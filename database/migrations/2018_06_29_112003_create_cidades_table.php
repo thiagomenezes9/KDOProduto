@@ -20,6 +20,15 @@ class CreateCidadesTable extends Migration
             $table->integer('estados_id')->unsigned();
             $table->foreign('estados_id')->references('id')->on('estados')->onDelete('cascade');
         });
+
+
+        DB::table('cidades')->insert(
+            array(
+                'nome' => 'Jataí',
+                'estados_id'=>'1'
+
+            )
+        );
     }
 
     /**

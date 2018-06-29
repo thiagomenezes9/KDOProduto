@@ -20,14 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->dateTime('dt_nasc')->nullable();
             $table->binary('foto')->nullable();
-            $table->string('cpf');
-            $table->string('telefone');
+            $table->string('cpf')->nullable();
+            $table->string('telefone')->nullable();
             $table->boolean('ativo');
             $table->string('tipo');
-            $table->integer('cidade_id')->unsigned();
+            $table->integer('cidade_id')->unsigned()->nullable();
             $table->foreign('cidade_id')->references('id')->on('cidades');
 
-            $table->integer('supermercado_id')->unsigned();
+            $table->integer('supermercado_id')->unsigned()->nullable();
             $table->foreign('supermercado_id')->references('id')->on('supermercados');
 
             $table->rememberToken();
@@ -37,6 +37,18 @@ class CreateUsersTable extends Migration
         Schema::table('users', function(Blueprint $table){
             DB::statement('ALTER TABLE users MODIFY foto LONGBLOB');
         });
+
+
+        DB::table('users')->insert(
+            array(
+                'email' => 'thiagomenezes9@gmail.com',
+                'name' => 'admin',
+                'password' => '$2y$10$GGYmnhv6.JtHUuDseuYlq.z1TlzMCymB1TVwjlifN4CtlrwG861sK',
+                'ativo' => '1',
+                'tipo' => 'ADMIN'
+
+            )
+        );
     }
 
     /**

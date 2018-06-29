@@ -18,6 +18,15 @@ class CreatePaisTable extends Migration
             $table->timestamps();
             $table->string('nome');
         });
+
+
+        DB::table('pais')->insert(
+            array(
+                'nome' => 'Brasil'
+
+
+            )
+        );
     }
 
     /**

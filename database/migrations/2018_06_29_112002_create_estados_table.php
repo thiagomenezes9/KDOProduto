@@ -20,6 +20,15 @@ class CreateEstadosTable extends Migration
             $table->integer('pais_id')->unsigned();
             $table->foreign('pais_id')->references('id')->on('pais')->onDelete('cascade');
         });
+
+
+        DB::table('estados')->insert(
+            array(
+                'nome' => 'Goiás',
+                'pais_id'=>'1'
+
+            )
+        );
     }
 
     /**
