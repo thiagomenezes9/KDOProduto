@@ -31,11 +31,87 @@
         <ul class="sidebar-menu">
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <a href="#">
-                <i class="fa fa-newspaper-o"></i>
-                <span>Publicações</span>
-                {{--<i class="fa fa-angle-left pull-right"></i>--}}
-            </a>
+            @if(Auth::user()->tipo == 'ADMIN')
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Cadastrar Produtos</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Usuarios</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+
+
+                @endif
+            @if(Auth::user()->tipo == 'LOJA')
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Meus Produto</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Minhas Ofertas</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Meu Cadastro</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Sugestoes</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Relatorios</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                @endif
+
+            @if(Auth::user()->tipo == 'USER')
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Meus Interreses</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Meus Dados</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Sugerir Produto</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+                @endif
 
 
         </ul><!-- /.sidebar-menu -->
