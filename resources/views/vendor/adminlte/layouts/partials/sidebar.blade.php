@@ -36,7 +36,7 @@
             @if(Auth::user()->tipo == 'ADMIN')
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-barcode"></i>
                     <span>Cadastrar Produtos</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
@@ -70,27 +70,27 @@
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-strikethrough"></i>
                     <span>Estabelecimentos</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
 
-                <a href="#">
-                    <i class="fa fa-users"></i>
+                <a href="{{route('marcas.index')}}">
+                    <i class="fa fa-tag"></i>
                     <span>Marca</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-folder-open"></i>
                     <span>Segmento</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-shopping-bag"></i>
                     <span>Categoria</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
@@ -104,14 +104,14 @@
             @if(Auth::user()->tipo == 'LOJA')
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-barcode"></i>
                     <span>Meus Produto</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-balance-scale"></i>
                     <span>Minhas Ofertas</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
@@ -125,14 +125,14 @@
                 </a>
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-clipboard-list"></i>
                     <span>Sugestoes</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-chart-bar"></i>
                     <span>Relatorios</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
@@ -144,7 +144,7 @@
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-box-heart"></i>
                     <span>Meus Interreses</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
@@ -158,7 +158,7 @@
 
 
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-cart-plus"></i>
                     <span>Sugerir Produto</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>

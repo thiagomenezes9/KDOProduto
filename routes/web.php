@@ -47,6 +47,9 @@ Route::group(['middleware'=>['web']],function(){
     Route::resource('cidades','CidadeController');
 
 
+    Route::resource('marcas','MarcaController');
+
+
 
 
 });

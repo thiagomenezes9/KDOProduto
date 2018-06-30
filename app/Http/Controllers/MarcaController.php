@@ -14,7 +14,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        $marcas = Marca::paginate(10);
+        return view('Marca.index',compact('marcas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Marca.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $marca = new Marca();
+
+        $marca->descricao = $request->descricao;
+        $marca->saveOrFail();
+
+        return redirect('marcas');
+
     }
 
     /**
@@ -44,9 +56,11 @@ class MarcaController extends Controller
      * @param  \App\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function show(Marca $marca)
+    public function show($id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+
+        return view('Marca.show',compact('marca'));
     }
 
     /**
@@ -55,9 +69,11 @@ class MarcaController extends Controller
      * @param  \App\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit($id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+
+        return view('Marca.edit',compact('marca'));
     }
 
     /**
@@ -67,9 +83,19 @@ class MarcaController extends Controller
      * @param  \App\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $marca = Marca::findOrFail($id);
+
+        $marca->descricao = $request->descricao;
+        $marca->saveOrFail();
+
+        return redirect('marcas');
     }
 
     /**
@@ -78,8 +104,12 @@ class MarcaController extends Controller
      * @param  \App\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+
+        $marca->delete();
+
+        return redirect('marcas');
     }
 }
