@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\Estado;
 use Illuminate\Http\Request;
 
 class CidadeController extends Controller
@@ -14,7 +15,8 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        //
+        $cidades = Cidade::paginate(10);
+        return view('Cidade.index',compact('cidades'));
     }
 
     /**
@@ -24,7 +26,10 @@ class CidadeController extends Controller
      */
     public function create()
     {
-        //
+        $estado = Estado::all();
+
+
+        return view('Cidade.create',compact('estado'));
     }
 
     /**
@@ -35,7 +40,19 @@ class CidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cidade = new Cidade;
+
+        $cidade->nome = $request->nome;
+        $cidade->sigla = $request->sigla;
+
+        $estado = Estado::findOrFail($request->estado);
+
+        $cidade->estado()->associate($estado);
+
+        $cidade->saveOrFail();
+
+
+        return redirect('cidades');
     }
 
     /**
@@ -44,9 +61,11 @@ class CidadeController extends Controller
      * @param  \App\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
-    public function show(Cidade $cidade)
+    public function show($id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+
+        return view('Cidade.show',compact('cidade'));
     }
 
     /**
@@ -55,9 +74,13 @@ class CidadeController extends Controller
      * @param  \App\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cidade $cidade)
+    public function edit($id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+
+        $estado = Estado::all();
+
+        return view('Cidade.edit',compact('cidade','estado'));
     }
 
     /**
@@ -67,9 +90,23 @@ class CidadeController extends Controller
      * @param  \App\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cidade $cidade)
+    public function update(Request $request, $id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+
+
+        $estado = Estado::findOrFail($request->estado);
+
+        $cidade->estado()->associate($estado);
+
+
+        $cidade->update($request->all());
+
+
+        $cidade->save();
+
+
+        return redirect('cidades');
     }
 
     /**
@@ -78,8 +115,15 @@ class CidadeController extends Controller
      * @param  \App\Cidade  $cidade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cidade $cidade)
+    public function destroy($id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+
+        $cidade->delete();
+
+
+        //  Session::flash('mensagem', 'Contato deletado com sucesso!');
+
+        return redirect('estados');
     }
 }

@@ -14,7 +14,8 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Pais::paginate(10);
+        return view('Pais.index',compact('paises'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PaisController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pais.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $arquivo = Input::file('bandeira');
+        $form = $request->all();
+        $form['bandeira'] = (string) Image::make($arquivo)->encode('data-url');
+
+
+        Pais::create($form);
+
+
+        return redirect('pais');
     }
 
     /**
@@ -44,9 +53,11 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function show(Pais $pais)
+    public function show($id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+
+        return view('Pais.show',compact('pais'));
     }
 
     /**
@@ -55,9 +66,11 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pais $pais)
+    public function edit($id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+
+        return view('Pais.edit',compact('pais'));
     }
 
     /**
@@ -67,9 +80,23 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pais $pais)
+    public function update(Request $request, $id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+
+        $pais->nome = $request->nome;
+        $pais->sigla = $request->sigla;
+
+        if(isset($request->bandeira)){
+            $arquivo = Input::file('bandeira');
+            $pais['bandeira'] = (string) Image::make($arquivo)->encode('data-url');
+        }
+
+
+        $pais->save();
+
+
+        return redirect('pais');
     }
 
     /**
@@ -78,8 +105,15 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pais $pais)
+    public function destroy($id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+
+        $pais->delete();
+
+
+        //  Session::flash('mensagem', 'Contato deletado com sucesso!');
+
+        return redirect('pais');
     }
 }

@@ -17,12 +17,16 @@ class CreatePaisTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nome');
+            $table->string('sigla');
+            $table->binary('bandeira')->nullable();
+
         });
 
 
         DB::table('pais')->insert(
             array(
-                'nome' => 'Brasil'
+                'nome' => 'Brasil',
+                'sigla' => 'BR'
 
 
             )

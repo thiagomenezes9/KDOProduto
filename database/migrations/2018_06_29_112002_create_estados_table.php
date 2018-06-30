@@ -17,6 +17,7 @@ class CreateEstadosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nome');
+            $table->string('sigla');
             $table->integer('pais_id')->unsigned();
             $table->foreign('pais_id')->references('id')->on('pais')->onDelete('cascade');
         });
@@ -25,6 +26,7 @@ class CreateEstadosTable extends Migration
         DB::table('estados')->insert(
             array(
                 'nome' => 'Goiás',
+                'sigla' => 'GO',
                 'pais_id'=>'1'
 
             )

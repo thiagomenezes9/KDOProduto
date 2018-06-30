@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pais extends Model
 {
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome','sigla','bandeira'];
 
 
     public function estados()

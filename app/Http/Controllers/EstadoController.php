@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estado;
+use App\Pais;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
@@ -14,7 +15,8 @@ class EstadoController extends Controller
      */
     public function index()
     {
-        //
+        $estados = Estado::paginate(10);
+        return view('estado.index',compact('estados'));
     }
 
     /**
@@ -24,7 +26,10 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        //
+        $pais = Pais::all();
+
+
+        return view('estado.create',compact('pais'));
     }
 
     /**
@@ -35,7 +40,19 @@ class EstadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estado = new Estado;
+
+        $estado->nome = $request->nome;
+        $estado->sigla = $request->sigla;
+
+        $pais = Pais::findOrFail($request->pais);
+
+        $estado->pais()->associate($pais);
+
+        $estado->saveOrFail();
+
+
+        return redirect('estados');
     }
 
     /**
@@ -44,9 +61,11 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function show(Estado $estado)
+    public function show($id)
     {
-        //
+        $estado = Estado::findOrFail($id);
+
+        return view('estado.show',compact('estado'));
     }
 
     /**
@@ -55,9 +74,13 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estado $estado)
+    public function edit($id)
     {
-        //
+        $estado = Estado::findOrFail($id);
+
+        $pais = Pais::all();
+
+        return view('estado.edit',compact('estado','pais'));
     }
 
     /**
@@ -67,9 +90,23 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estado $estado)
+    public function update(Request $request, $id)
     {
-        //
+        $estado = Estado::findOrFail($id);
+
+
+        $pais = Pais::findOrFail($request->pais);
+
+        $estado->pais()->associate($pais);
+
+
+        $estado->update($request->all());
+
+
+        $estado->save();
+
+
+        return redirect('estados');
     }
 
     /**
@@ -78,8 +115,15 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estado $estado)
+    public function destroy($id)
     {
-        //
+        $estado = Estado::findOrFail($id);
+
+        $estado->delete();
+
+
+        //  Session::flash('mensagem', 'Contato deletado com sucesso!');
+
+        return redirect('estados');
     }
 }

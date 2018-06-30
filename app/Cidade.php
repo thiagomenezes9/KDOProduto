@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cidade extends Model
 {
-    protected $fillable = ['nome','estados_id'];
+    protected $fillable = ['nome','sigla','estados_id'];
 
     public function estado(){
         return $this->belongsTo('App\Estado','estados_id');

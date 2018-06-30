@@ -17,6 +17,7 @@ class CreateCidadesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nome');
+            $table->string('sigla');
             $table->integer('estados_id')->unsigned();
             $table->foreign('estados_id')->references('id')->on('estados')->onDelete('cascade');
         });
@@ -25,6 +26,7 @@ class CreateCidadesTable extends Migration
         DB::table('cidades')->insert(
             array(
                 'nome' => 'Jataí',
+                'sigla' => 'JTI',
                 'estados_id'=>'1'
 
             )

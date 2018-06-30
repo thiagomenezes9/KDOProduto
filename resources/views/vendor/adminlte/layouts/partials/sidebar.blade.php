@@ -30,6 +30,8 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">Menu</li>
+
+            <li>
             <!-- Optionally, you can add icons to the links -->
             @if(Auth::user()->tipo == 'ADMIN')
 
@@ -45,6 +47,55 @@
                     <span>Usuarios</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
+
+                    <a href="{{route('cidades.index')}}">
+                        <i class="fa fa-map"></i>
+                        <span>Cidades</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+                    <a href="{{route('estados.index')}}">
+                        <i class="fa fa-flag"></i>
+                        <span>Estados</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+
+                    <a href="{{route('pais.index')}}">
+                        <i class="fa fa-globe"></i>
+                        <span>Paises</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Estabelecimentos</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Marca</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Segmento</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Categoria</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
+
 
 
 
@@ -113,7 +164,7 @@
                 </a>
                 @endif
 
-
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
