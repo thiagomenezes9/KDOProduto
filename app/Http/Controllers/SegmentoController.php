@@ -14,7 +14,8 @@ class SegmentoController extends Controller
      */
     public function index()
     {
-        //
+        $segmentos = Segmento::paginate(10);
+        return view('Segmento.index',compact('segmentos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SegmentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Segmento.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class SegmentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $segmento = new Segmento();
+
+        $segmento->descricao = $request->descricao;
+        $segmento->saveOrFail();
+
+        return redirect('segmentos');
     }
 
     /**
@@ -46,7 +57,7 @@ class SegmentoController extends Controller
      */
     public function show(Segmento $segmento)
     {
-        //
+        return view('Segmento.show',compact('segmento'));
     }
 
     /**
@@ -57,7 +68,7 @@ class SegmentoController extends Controller
      */
     public function edit(Segmento $segmento)
     {
-        //
+        return view('Segmento.edit',compact('segmento'));
     }
 
     /**
@@ -67,9 +78,19 @@ class SegmentoController extends Controller
      * @param  \App\Segmento  $segmento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Segmento $segmento)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $segmento = Segmento::findOrFail($id);
+
+        $segmento->descricao = $request->descricao;
+        $segmento->saveOrFail();
+
+        return redirect('segmentos');
     }
 
     /**
@@ -78,8 +99,10 @@ class SegmentoController extends Controller
      * @param  \App\Segmento  $segmento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Segmento $segmento)
+    public function destroy($id)
     {
-        //
+        $segmento = Segmento::findOrFail($id);
+        $segmento->delete();
+        return redirect('segmentos');
     }
 }

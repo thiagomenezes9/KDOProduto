@@ -82,14 +82,14 @@
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
-                <a href="#">
+                <a href="{{route('segmentos.index')}}">
                     <i class="fa fa-folder-open"></i>
                     <span>Segmento</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
 
-                <a href="#">
+                <a href="{{route('categorias.index')}}">
                     <i class="fa fa-shopping-bag"></i>
                     <span>Categoria</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}

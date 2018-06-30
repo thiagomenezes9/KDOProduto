@@ -14,7 +14,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::paginate(10);
+        return view('Categoria.index',compact('categorias'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Categoria.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $categoria = new Categoria();
+
+        $categoria->descricao = $request->descricao;
+        $categoria->saveOrFail();
+
+        return redirect('categorias');
     }
 
     /**
@@ -44,9 +55,11 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+        return view('Categoria.show',compact('categoria'));
     }
 
     /**
@@ -55,9 +68,11 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+        return view('Categoria.edit',compact('categoria'));
     }
 
     /**
@@ -67,9 +82,19 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required'
+
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->descricao = $request->descricao;
+        $categoria->saveOrFail();
+
+        return redirect('categorias');
     }
 
     /**
@@ -78,8 +103,12 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->delete();
+
+        return redirect('categorias');
     }
 }
