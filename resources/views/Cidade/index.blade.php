@@ -28,7 +28,7 @@
 
                     <div class="box-body">
 
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" id="tabCidades">
                             <thead>
                             <tr>
                                 <td class="col-md-4"><strong>Nome</strong></td>
@@ -104,9 +104,7 @@
                             </tbody>
                         </table>
 
-                        <div class="text-center">
-                            {!! $cidades->links() !!}
-                        </div>
+
 
 
                     </div>
@@ -115,5 +113,32 @@
         </div>
     </div>
 
+
+@endsection
+
+
+@section('scriptlocal')
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabCidades').DataTable( {
+                "language": {
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Próxima"
+                    },
+                    "sSearch": "<span>Pesquisar</span> _INPUT_", //search
+                    "lengthMenu": "Exibir _MENU_ registros por página",
+                    "zeroRecords": "Não há resultados para esta busca",
+                    "info": "Exibindo página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(Filtrado de _MAX_ registros)"
+
+                }
+            } );
+
+        })
+    </script>
 
 @endsection

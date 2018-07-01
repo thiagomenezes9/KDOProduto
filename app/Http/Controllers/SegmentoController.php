@@ -14,7 +14,7 @@ class SegmentoController extends Controller
      */
     public function index()
     {
-        $segmentos = Segmento::paginate(10);
+        $segmentos = Segmento::all();
         return view('Segmento.index',compact('segmentos'));
     }
 

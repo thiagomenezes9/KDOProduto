@@ -14,7 +14,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        $paises = Pais::paginate(10);
+        $paises = Pais::all();
         return view('Pais.index',compact('paises'));
     }
 

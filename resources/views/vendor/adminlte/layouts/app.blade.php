@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-green fixed">
+<body class="skin-green sidebar-mini">
 <div id="app" v-cloak>
     <div class="wrapper">
 
@@ -57,6 +57,7 @@ desired effect
 </div>
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
+    @yield('scriptlocal')
 @show
 
 </body>
