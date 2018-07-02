@@ -50,6 +50,8 @@ Route::group(['middleware'=>['web']],function(){
     Route::resource('marcas','MarcaController');
     Route::resource('categorias','CategoriaController');
     Route::resource('segmentos','SegmentoController');
+    Route::resource('produtos','ProdutoController');
+
 
 
 

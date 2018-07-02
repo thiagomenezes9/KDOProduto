@@ -35,7 +35,7 @@
             <!-- Optionally, you can add icons to the links -->
             @if(Auth::user()->tipo == 'ADMIN')
 
-                <a href="#">
+                <a href="{{route('produtos.index')}}">
                     <i class="fa fa-barcode"></i>
                     <span>Cadastrar Produtos</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}

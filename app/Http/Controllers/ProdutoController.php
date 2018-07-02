@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
+use App\Marca;
 use App\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 {
@@ -14,7 +17,11 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->tipo == 'ADMIN'){
+            $produtos = Produto::all();
+            return view('Produtos.index',compact('produtos'));
+        }
+
     }
 
     /**
@@ -24,7 +31,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        $marcas = Marca::all();
+        $categorias = Categoria::all();
+
+        return view('Produtos.create',compact('marcas','categorias'));
     }
 
     /**

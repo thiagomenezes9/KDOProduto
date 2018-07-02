@@ -11,19 +11,17 @@
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button
 
-        Tag a abaixo e os 3 riscos que deveria esconder menu
-        -->
-        {{--<a class="sidebar-toggle" data-toggle="push-menu" role="button">
+
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
-        </a>--}}
+        </a>
 
 
 
 
-     {{--   <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        {{--<form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>--}}
 
@@ -31,7 +29,10 @@
 
 
 
-        <!-- Navbar Right Menu -->
+
+
+
+    <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
@@ -43,7 +44,7 @@
                     <li><a href="{{ url('/auth/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
                     <li><a href="{{ url('/auth/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
                 @else
-                    <!-- User Account Menu -->
+                <!-- User Account Menu -->
                     <li class="dropdown user user-menu" id="user_menu" style="max-width: 280px;white-space: nowrap;">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="max-width: 280px;white-space: nowrap;overflow: hidden;overflow-text: ellipsis">
@@ -57,23 +58,23 @@
                             <li class="user-header">
                                 <img src="{{ Auth::user()->foto ? Auth::user()->foto : Gravatar::get($user->email) }}" class="img-circle" alt="User Image" />
                                 <p>
-                                   {{Auth::user()->name}}
+                                    {{Auth::user()->name}}
                                     <small>{{ trans('adminlte_lang::message.login') }} {{Auth::user()->email}}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            {{--<li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.followers') }}</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.sales') }}</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.friends') }}</a>
-                                </div>
-                            </li>--}}
-                            <!-- Menu Footer-->
+                        {{--<li class="user-body">
+                            <div class="col-xs-4 text-center">
+                                <a href="#">{{ trans('adminlte_lang::message.followers') }}</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">{{ trans('adminlte_lang::message.sales') }}</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">{{ trans('adminlte_lang::message.friends') }}</a>
+                            </div>
+                        </li>--}}
+                        <!-- Menu Footer-->
                             <li class="user-footer">
                                 {{--<div class="pull-left">
                                     <a href="{{ url('/user/profile') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
@@ -99,7 +100,7 @@
                     </li>
                 @endif
 
-                <!-- Control Sidebar Toggle Button -->
+            <!-- Control Sidebar Toggle Button -->
                 {{--<li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>--}}
