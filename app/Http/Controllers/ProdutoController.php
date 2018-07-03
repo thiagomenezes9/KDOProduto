@@ -7,6 +7,8 @@ use App\Marca;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class ProdutoController extends Controller
 {
@@ -45,7 +47,42 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required',
+            'cd_barras' => 'required',
+            'foto' =>'required',
+            'marca' =>'required',
+            'categoria'=>'required'
+
+        ]);
+
+        $produto = new Produto();
+
+        $produto->descricao = $request->descricao;
+        $produto->cd_barras = $request->cd_barras;
+
+        $marca = Marca::find($request->marca);
+        $categoria = Categoria::find($request->categoria);
+
+        $produto->categoria()->associate($categoria);
+        $produto->marca()->associate($marca);
+
+
+        dd($produto);
+
+
+        $arquivo = Input::file('foto');
+        $form = $request->all();
+//            $form['imagem'] = (string) Image::make($arquivo)->encode('data-url');
+        $form['foto'] = (string) Image::make($arquivo)->resize(1200,600)->encode('data-url');
+        $produto->foto = $form['foto'];
+
+        $produto->saveOrFail();
+
+
+        return redirect('produtos');
+
+
     }
 
     /**
@@ -56,7 +93,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        return view('Produtos.show',compact('produto'));
     }
 
     /**
@@ -67,7 +104,11 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+
+        $marcas = Marca::all();
+        $categorias = Categoria::all();
+
+        return view('Produtos.edit',compact('produto','marcas','categorias'));
     }
 
     /**
@@ -79,7 +120,41 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required',
+            'cd_barras' => 'required',
+            'foto' =>'required',
+            'marca' =>'required',
+            'categoria'=>'required'
+
+        ]);
+
+
+
+        $produto->descricao = $request->descricao;
+        $produto->cd_barras = $request->cd_barras;
+
+        $marca = Marca::find($request->marca);
+        $categoria = Categoria::find($request->categoria);
+
+
+
+
+        $produto->categoria()->associate($categoria);
+        $produto->marca()->associate($marca);
+
+
+
+        $arquivo = Input::file('foto');
+        $form = $request->all();
+//            $form['imagem'] = (string) Image::make($arquivo)->encode('data-url');
+        $form['foto'] = (string) Image::make($arquivo)->resize(1200,600)->encode('data-url');
+        $produto->foto = $form['foto'];
+
+        $produto->saveOrFail();
+
+
+        return redirect('produtos');
     }
 
     /**

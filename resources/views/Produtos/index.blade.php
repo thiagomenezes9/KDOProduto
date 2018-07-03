@@ -44,12 +44,12 @@
                                     <td align="left">{{ $produto->descricao }}</td>
                                     <td align="left">{{ $produto->marca->descricao }}</td>
                                     <td>
-                                        <a class="btn btn-small btn-info" href="{{route('produtos.show',$produto->id)}}" >
+                                        <a class="btn btn-small btn-info" href="{{route('produtos.show',$produto)}}" >
                                             <i class="fa fa-search-plus"></i>
                                             Detalhes
                                         </a>
 
-                                        <a class="btn btn-small btn-warning" href="{{route('marcas.edit',$produto->id)}}" >
+                                        <a class="btn btn-small btn-warning" href="{{route('marcas.edit',$produto)}}" >
                                             <i class="fa fa-pencil-square-o"></i>
                                             Editar
                                         </a>

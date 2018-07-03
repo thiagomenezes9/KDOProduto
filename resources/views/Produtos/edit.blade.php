@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Produto
+    Produtos
 @stop
 
 @section('contentheader_title')
@@ -9,11 +9,12 @@
 @stop
 
 @section('contentheader_description')
-    Novo Produto
+    Descrição
 @stop
 
 
 @section('main-content')
+
 
     @if($errors->any())
         <div class="box alert alert-danger">
@@ -47,26 +48,26 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Novo Produto</h3>
+                        <h3 class="box-title">Produtos</h3>
                         <div align="right"><a href="{{route('produtos.index')}}" class="btn btn-info">Voltar</a></div>
+                        {{--<div align="right"><a href="{{route('pais.create')}}" class="btn btn-success">Novo</a></div>--}}
                     </div>
 
                     <div class="box-body">
 
-                        <form class="form-horizontal" action="{{route('produtos.store')}}" method="post" enctype="multipart/form-data" >
+                        <form class="form-horizontal" action="{{route('produtos.update',$produto)}}" method="post" enctype="multipart/form-data">
 
+                            <input type="hidden" name="_method" value="PUT">
 
-                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-
-
+                            {{csrf_field()}}
 
 
 
                             <div class="form-group">
                                 <label for="descricao" class="col-sm-2 control-label" >Descrição</label>
                                 <div class="col-sm-10">
-                                    <input name="descricao" value="{{ old('descricao') }}" type="text" class="form-control input-lg"
-                                           id="descricao" placeholder="Descrição do Produto" autofocus>
+                                    <input name="descricao" value="{{ $produto->descricao}}" type="text" class="form-control input-lg"
+                                           id="descricao"  autofocus>
                                 </div>
                             </div>
 
@@ -74,7 +75,7 @@
                             <div class="form-group">
                                 <label for="cd_barras" class="col-sm-2 control-label" >Código de Barras</label>
                                 <div class="col-sm-10">
-                                    <input name="cd_barras" value="{{ old('cd_barras') }}" type="text" class="form-control input-lg"
+                                    <input name="cd_barras" value="{{ $produto->cd_barras }}" type="text" class="form-control input-lg"
                                               id="cd_barras" placeholder="Código de Barras" autofocus></input>
                                 </div>
                             </div>
@@ -88,7 +89,7 @@
 
                                         @foreach($marcas as $marca)
                                             {{--                                            <option value="{{$c->id}}" {{ $membro['id'] === (isset($coordenacao->responsavel) ? $coordenacao->responsavel: '' ) ? 'selected' : '' }}>{{$membro['name']}}</option>--}}
-                                            <option value="{{$marca->descricao}}">{{$marca->descricao}}</option>
+                                            <option value="{{$marca->descricao}}" {{$marca->descricao === $produto->marca->descricao ? 'selected' : ''}}>{{$marca->descricao}}</option>
 
                                         @endforeach
                                     </datalist>
@@ -106,7 +107,7 @@
 
                                         @foreach($categorias as $categoria)
                                             {{--                                            <option value="{{$c->id}}" {{ $membro['id'] === (isset($coordenacao->responsavel) ? $coordenacao->responsavel: '' ) ? 'selected' : '' }}>{{$membro['name']}}</option>--}}
-                                            <option value="{{$categoria->descricao}}">{{$categoria->descricao}}</option>
+                                            <option value="{{$categoria->descricao}}" {{$categoria->descricao === $produto->$categoria->descricao ? 'selected' : ''}}>{{$categoria->descricao}}</option>
 
                                         @endforeach
                                     </datalist>
@@ -131,22 +132,15 @@
 
 
 
+
                         </form>
 
+
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
-@endsection
-
-
-@section('scriptlocal')
-
 
 
 @endsection
