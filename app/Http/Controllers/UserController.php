@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
 use App\Pais;
 use App\Supermercado;
 use App\User;
@@ -81,15 +82,84 @@ class UserController extends Controller
     {
 
 
-        $this->validate($request,[
+        $usuario = User::find($id);
+
+       /* $this->validate($request,[
             'cidade' => 'required'
+
+        ]);*/
+
+        $this->validate($request, [
+            'dt_nasc' => 'required'
+
 
         ]);
 
 
 
+        if(isset($request->foto)) {
 
-        $usuario = User::find($id);
+            $arquivo = Input::file('foto');
+            $form = $request->all();
+            $form['foto'] = (string)Image::make($arquivo)->resize(300,300)->encode('data-url');
+            $usuario->foto= $form['foto'];
+        }
+
+
+       $usuario->name = $request->name;
+       $usuario->email = $request->email;
+       $usuario->telefone = $request->telefone;
+       $usuario->cpf = $request->cpf;
+       $usuario->dt_nasc = $request->dt_nasc;
+       $usuario->sexo = $request->sexo;
+       $usuario->ativo = $request->ativo;
+
+
+        if(isset($request->cidade)){
+            $cidade = Cidade::find($request->cidade);
+
+
+            $usuario->cidade()->associate($cidade);
+
+        }
+
+
+        if(isset($request->supermercado)){
+            $supermercado = Supermercado::find($request->supermercado);
+
+            $usuario->tipo = 'LOJA';
+            $usuario->supermercado()->associate($supermercado);
+
+        }
+
+        if($usuario->tipo == 'LOJA'){
+
+            $supermercado = $usuario->supermercado();
+
+            $supermercado->name = $request->name;
+            $supermercado->email = $request->email;
+            $supermercado->telefone = $request->telefone;
+            $supermercado->CNPJ = $request->cpf;
+            $supermercado->dt_nasc = $request->dt_nasc;
+
+
+            $supermercado->save();
+
+        }
+
+
+
+
+
+
+        $usuario->save();
+
+        return redirect('dashboard');
+
+
+
+
+
 
 
 
