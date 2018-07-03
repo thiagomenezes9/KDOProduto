@@ -86,8 +86,12 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="card card-signup">
-                        <h2 class="card-title text-center">Registro</h2>
-                        <div class="row">
+
+                        <div class="card-content">
+                            <div class="card-header text-center" data-background-color="green">
+                                <h3 class="card-title">Registro</h3>
+
+                            </div>
 
                            {{--<div class="col-md-5">--}}
                             <div class="social text-center">
@@ -151,6 +155,19 @@
                                                     <i class="material-icons">child_friendly</i>
                                                 </span>
                                         <input type="date" value="{{old('dt_nasc')}}" class="form-control" placeholder="Data Nascimento..." name="dt_nasc">
+                                    </div>
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                                    <i class="material-icons">child_friendly</i>
+                                                </span>
+                                        <select name="sexo" id="sexo" class="form-control">
+
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Feminino">Feminino</option>
+
+                                        </select>
                                     </div>
 
 

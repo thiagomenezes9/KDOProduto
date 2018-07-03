@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('telefone')->nullable();
             $table->boolean('ativo');
             $table->string('tipo');
+            $table->string('sexo');
             $table->integer('cidade_id')->unsigned()->nullable();
             $table->foreign('cidade_id')->references('id')->on('cidades');
 
@@ -45,7 +46,8 @@ class CreateUsersTable extends Migration
                 'name' => 'admin',
                 'password' => '$2y$10$GGYmnhv6.JtHUuDseuYlq.z1TlzMCymB1TVwjlifN4CtlrwG861sK',
                 'ativo' => '1',
-                'tipo' => 'ADMIN'
+                'tipo' => 'ADMIN',
+                'sexo' => 'Masculino'
 
             )
         );

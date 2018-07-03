@@ -35,6 +35,7 @@
                         <br>
                         <p><strong>Email : </strong>{{$usuario->email}}</p><br>
                         <p><strong>Data Nascimento : </strong>{{\Carbon\Carbon::parse($usuario->dt_nasc)->format('d/m/Y')}}</p><br>
+                        <p><strong>Sexo : </strong>{{$usuario->sexo}}</p>
                         <p><strong>Ativo : </strong>{{$usuario->ativo ? 'Sim' : 'Não'}}</p><br>
 
                         <p><strong>CPF :</strong> {{$usuario->cpf}}</p><br>

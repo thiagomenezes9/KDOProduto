@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pais;
+use App\Supermercado;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -63,7 +65,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
-        return view('user.edit',compact('usuario'));
+        $pais = Pais::all();
+        $supermercados = Supermercado::all();
+        return view('user.edit',compact('usuario','pais','supermercados'));
     }
 
     /**
@@ -75,7 +79,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        $this->validate($request,[
+            'cidade' => 'required'
+
+        ]);
+
+
+
+
+        $usuario = User::find($id);
+
+
+
+
+
     }
 
     /**

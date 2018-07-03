@@ -71,7 +71,7 @@ Perfil do Usuario
                         {{csrf_field()}}
 
 
-                        <h2>{{$usuario->name}} Profile</h2>
+                        <h2>Perfil do {{$usuario->name}}</h2>
 
 
 
@@ -101,18 +101,99 @@ Perfil do Usuario
                         @endif
 
                         <div class="form-group">
-                            <label for="sigla" class="col-sm-2 control-label" >Matricula</label>
+                            <label for="email" class="col-sm-2 control-label" >E-mail</label>
                             <div class="col-sm-10">
-                                <input name="matricula" value="{{$usuario->matricula}}" type="text" class="form-control input-lg"
-                                       id="matricula" placeholder="Matricula do Usuário" autofocus>
+                                <input name="email" value="{{$usuario->email}}" type="email" class="form-control input-lg"
+                                       id="email"  autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone" class="col-sm-2 control-label" >Telefone </label>
+                            <div class="col-sm-10">
+                                <input name="telefone" value="{{$usuario->telefone}}" type="tel" class="form-control input-lg"
+                                       id="telefone"  autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf" class="col-sm-2 control-label" >CPF </label>
+                            <div class="col-sm-10">
+                                <input name="cpf" value="{{$usuario->cpf}}" type="text" class="form-control input-lg"
+                                       id="cpf"  autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dt_nasc" class="col-sm-2 control-label" >Data Nascimento</label>
+                            <div class="col-sm-10">
+
+
+
+                                <input name="dt_nasc" value="{{ $usuario->dt_nasc }}" type="date" class="form-control input-lg"
+                                       id="dt_nasc">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+                            <div class="col-sm-10">
+                                <select name="sexo" id="sexo" class="form-control">
+
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+
+                                </select>
+
+
+
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="imagem" class="col-sm-2 control-label">Upload Imagem</label>
-                            <input name="imagem" type="file" class="form-control-file"
-                                   id="imagem" autofocus>
+                            <label for="pais" class="col-sm-2 control-label" >Pais : </label>
+                            <div class="col-sm-10">
+                                <select name="pais" id="pais" class="form-control">
+                                    <option id="paisOp">Selecione o pais</option>
+                                    @foreach($pais as $p)
+                                        <option value="{{$p->id}}">{{$p->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estados" class="col-sm-2 control-label" >Estados : </label>
+                            <div class="col-sm-10">
+                                <select name="estados" id="estados" class="form-control" disabled>
+
+                                    <option>Selecione o pais</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidades" class="col-sm-2 control-label" >Cidades : </label>
+                            <div class="col-sm-10">
+                                <select name="cidades" id="cidades" class="form-control" disabled>
+
+                                    <option >Selecione o Estado</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="foto" class="col-sm-2 control-label">Foto</label>
+                            <input name="foto" type="file" class="form-control-file"
+                                   id="foto" autofocus>
                         </div>
 
 
@@ -136,4 +217,42 @@ Perfil do Usuario
 </div>
 
 
+@endsection
+
+@section('scriptlocal')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#pais').click(function () {
+                $.ajax({
+                    url:'../../listEstados/'+$('#pais').val(),
+                    type:'GET',
+                    dataType:'json',
+                    success: function (json) {
+                        $('#estados').find('option').remove();
+                        $('#cidades').find('option').remove();
+                        $('#estados').removeAttr('disabled');
+                        $('#pais').find('#paisOp').remove();
+                        $.each(JSON.parse(json), function (i, obj) {
+                            $('#estados').append($('<option>').text(obj.nome).attr('value', obj.id));
+                        })
+                    }
+                })
+            })
+
+            $('#estados').click(function () {
+                $.ajax({
+                    url:'../../listCidades/'+$('#estados').val(),
+                    type:'GET',
+                    dataType:'json',
+                    success: function (json) {
+                        $('#cidades').find('option').remove();
+                        $('#cidades').removeAttr('disabled');
+                        $.each(JSON.parse(json), function (i, obj) {
+                            $('#cidades').append($('<option>').text(obj.nome).attr('value', obj.id));
+                        })
+                    }
+                })
+            })
+        })
+    </script>
 @endsection
