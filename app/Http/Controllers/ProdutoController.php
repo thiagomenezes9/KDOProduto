@@ -56,19 +56,25 @@ class ProdutoController extends Controller
 
         ]);
 
-        $produto = new Produto();
+        $produto = new Produto;
 
         $produto->descricao = $request->descricao;
         $produto->cd_barras = $request->cd_barras;
 
-        $marca = Marca::find($request->marca);
-        $categoria = Categoria::find($request->categoria);
-
-        $produto->categoria()->associate($categoria);
-        $produto->marca()->associate($marca);
+        $marca = Marca::where('descricao',$request->marca)->get();
+        $categoria = Categoria::where('descricao',$request->categoria)->get();
 
 
-        dd($produto);
+
+
+        $produto->categoria()->associate($categoria[0]);
+        $produto->marca()->associate($marca[0]);
+
+//        $marca->produto()->associate($produto);
+//        $categoria->produto()->associate($produto);
+
+
+
 
 
         $arquivo = Input::file('foto');
@@ -134,14 +140,14 @@ class ProdutoController extends Controller
         $produto->descricao = $request->descricao;
         $produto->cd_barras = $request->cd_barras;
 
-        $marca = Marca::find($request->marca);
-        $categoria = Categoria::find($request->categoria);
+        $marca = Marca::where('descricao',$request->marca)->get();
+        $categoria = Categoria::where('descricao',$request->categoria)->get();
 
 
 
 
-        $produto->categoria()->associate($categoria);
-        $produto->marca()->associate($marca);
+        $produto->categoria()->associate($categoria[0]);
+        $produto->marca()->associate($marca[0]);
 
 
 
@@ -165,6 +171,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect('produtos');
     }
 }

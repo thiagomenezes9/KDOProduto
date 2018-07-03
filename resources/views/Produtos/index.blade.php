@@ -49,7 +49,7 @@
                                             Detalhes
                                         </a>
 
-                                        <a class="btn btn-small btn-warning" href="{{route('marcas.edit',$produto)}}" >
+                                        <a class="btn btn-small btn-warning" href="{{route('produtos.edit',$produto)}}" >
                                             <i class="fa fa-pencil-square-o"></i>
                                             Editar
                                         </a>
@@ -75,7 +75,7 @@
                                                     <div class="modal-footer">
 
                                                         <form id="formDelete{{ $produto->id }}"
-                                                              action="{{action('ProdutoController@destroy',$produto->id)}}" method="POST">
+                                                              action="{{action('ProdutoController@destroy',$produto)}}" method="POST">
 
                                                             {{ csrf_field() }}
                                                             {{--{{ method_field('DELETE') }}--}}

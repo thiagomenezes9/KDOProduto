@@ -121,18 +121,39 @@
                                                 </span>
                                         <input type="text" value="{{old('name')}}" class="form-control" placeholder="Primeiro nome..." name="name">
                                     </div>
-                                    {{--<div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">card_membership</i>
-                                                </span>
-                                        <input type="text" value="{{old('matricula')}}" class="form-control" placeholder="Matricula..." name="matricula">
-                                    </div>--}}
+
+
+
                                     <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">email</i>
                                                 </span>
                                         <input type="email" value="{{old('email')}}" class="form-control" placeholder="Email..." name="email">
                                     </div>
+
+
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">call</i>
+                                                </span>
+                                        <input type="tel" value="{{old('telefone')}}" class="form-control" placeholder="Telefone..." name="telefone">
+                                    </div>
+
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">fingerprint</i>
+                                                </span>
+                                        <input type="number" value="{{old('cpf')}}" class="form-control" placeholder="CPF..." name="cpf">
+                                    </div>
+
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">child_friendly</i>
+                                                </span>
+                                        <input type="date" value="{{old('dt_nasc')}}" class="form-control" placeholder="Data Nascimento..." name="dt_nasc">
+                                    </div>
+
+
                                     <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">lock_outline</i>

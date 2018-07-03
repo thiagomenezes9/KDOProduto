@@ -42,7 +42,7 @@
                 </a>
 
 
-                <a href="#">
+                <a href="{{route('usuarios.index')}}">
                     <i class="fa fa-users"></i>
                     <span>Usuarios</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}

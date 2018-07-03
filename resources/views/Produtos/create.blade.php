@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label for="cd_barras" class="col-sm-2 control-label" >Código de Barras</label>
                                 <div class="col-sm-10">
-                                    <input name="cd_barras" value="{{ old('cd_barras') }}" type="text" class="form-control input-lg"
+                                    <input name="cd_barras" value="{{ old('cd_barras') }}" type="number" class="form-control input-lg"
                                               id="cd_barras" placeholder="Código de Barras" autofocus></input>
                                 </div>
                             </div>
