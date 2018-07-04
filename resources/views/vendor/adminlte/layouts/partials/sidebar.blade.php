@@ -75,6 +75,12 @@
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
+                    <a href="{{route('precos.index')}}">
+                        <i class="fa fa-barcode"></i>
+                        <span>Preços</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
 
                 <a href="{{route('marcas.index')}}">
                     <i class="fa fa-tag"></i>
@@ -103,7 +109,7 @@
                 @endif
             @if(Auth::user()->tipo == 'LOJA')
 
-                <a href="#">
+                <a href="{{route('precos.index')}}">
                     <i class="fa fa-barcode"></i>
                     <span>Meus Produto</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
