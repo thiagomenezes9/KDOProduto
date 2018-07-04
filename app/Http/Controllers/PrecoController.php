@@ -24,6 +24,14 @@ class PrecoController extends Controller
         if($usuario->tipo == 'LOJA'){
             $precos = Preco::all()->where('supermercado_id','=',$usuario->supermercado_id)
                                     ->where('ativo','=','1');
+
+
+            /*$precos = DB::table('precos')->where([
+                ['supermercado_id', '=', '$usuario->supermercado_id'],
+                ['ativo', '=', '1']
+                ])
+                ->get();*/
+
         }
 
         return view('Precos.index',compact('precos'));
@@ -140,6 +148,14 @@ class PrecoController extends Controller
         $preco->save();
 
         return redirect('precos');
+
+
+        /**
+         * Apos mudar preço,verificar se preço novo e menor que preço atual
+         * se for mandar email para usuarios que tenha interresse no produto
+         *
+         *
+         */
     }
 
     /**

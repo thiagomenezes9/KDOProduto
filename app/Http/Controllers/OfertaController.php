@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Oferta;
+use App\Produto;
+use App\Supermercado;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OfertaController extends Controller
 {
@@ -14,7 +18,25 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Auth::user();
+
+        $ofertas = Oferta::all()->where('dt_fim','>=',Carbon::now());
+
+        if($usuario->tipo == 'LOJA'){
+            $ofertas = Oferta::all()->where('supermercado_id','=',$usuario->supermercado_id)
+                ->where('dt_fim','>=',Carbon::now());
+
+
+            /*$ofertas = DB::table('ofertas')->where([
+                ['supermercado_id', '=', '$usuario->supermercado_id'],
+                ['dt_fim', '>=', Carbon::now()]
+                ])
+                ->get();*/
+
+
+        }
+
+        return view('Oferta.index',compact('ofertas'));
     }
 
     /**
@@ -24,7 +46,9 @@ class OfertaController extends Controller
      */
     public function create()
     {
-        //
+        $produtos = Produto::all();
+        $supermercados = Supermercado::all();
+        return view('Oferta.create',compact('produtos','supermercados'));
     }
 
     /**
@@ -35,7 +59,40 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'valor' => 'required',
+            'produto' => 'required',
+            'supermercado' =>'required',
+            'dt_ini' =>'required|date|after:'.Carbon::now(),
+            'dt_fim' =>'required|date|after:'.Carbon::now()
+
+        ]);
+
+
+        $produto = Produto::where('descricao',$request->produto)->get();
+        $supermercado = Supermercado::find($request->supermercado);
+
+        $oferta = new Oferta();
+
+
+        $oferta->valor = $request->valor;
+        $oferta->dt_ini = $request->dt_ini;
+        $oferta->dt_fim = $request->dt_fim;
+        $oferta->supermercado()->associate($supermercado);
+        $oferta->produto()->associate($produto[0]);
+
+
+
+        $oferta->save();
+
+        return redirect('ofertas');
+
+        /**
+         *
+         Apos cadastrar oferta enviar e-mail para todos que tem interresse no mesmo produto.
+         */
+
+
     }
 
     /**
@@ -55,9 +112,11 @@ class OfertaController extends Controller
      * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Oferta $oferta)
+    public function edit($id)
     {
-        //
+        $oferta = Oferta::find($id);
+
+        return view('Oferta.edit',compact('oferta'));
     }
 
     /**
@@ -67,9 +126,39 @@ class OfertaController extends Controller
      * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oferta $oferta)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'valor' => 'required',
+            'produto' => 'required',
+            'supermercado' =>'required',
+            'dt_ini' =>'required|date|after:'.Carbon::now(),
+            'dt_fim' =>'required|date|after:'.Carbon::now()
+
+        ]);
+
+        $oferta = Oferta::find($id);
+
+
+
+        $produto = Produto::find($oferta->produto_id);
+        $supermercado = Supermercado::find($request->supermercado);
+
+
+
+
+        $oferta->valor = $request->valor;
+
+        $oferta->supermercado()->associate($supermercado);
+        $oferta->produto()->associate($produto);
+
+        $oferta->dt_ini = $request->dt_ini;
+        $oferta->dt_fim = $request->dt_fim;
+
+
+        $oferta->save();
+
+        return redirect('ofertas');
     }
 
     /**
@@ -78,8 +167,12 @@ class OfertaController extends Controller
      * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oferta $oferta)
+    public function destroy($id)
     {
-        //
+        $oferta = Oferta::find($id);
+
+        $oferta->delete();
+
+        return redirect('ofertas');
     }
 }
