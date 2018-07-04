@@ -124,11 +124,7 @@
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
-                <a href="#">
-                    <i class="fa fa-clipboard-list"></i>
-                    <span>Sugestoes</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+
 
 
                 <a href="#">
@@ -163,6 +159,13 @@
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
                 @endif
+
+                <a href="{{route('sugestao.index')}}">
+                    <i class="fa fa-book"></i>
+                    <span>Sugestoes</span>
+                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                </a>
+
 
             </li>
         </ul><!-- /.sidebar-menu -->
