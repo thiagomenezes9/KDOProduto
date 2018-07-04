@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
+use App\Pais;
+use App\Segmento;
 use App\Supermercado;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,9 @@ class SupermercadoController extends Controller
      */
     public function index()
     {
-        //
+        $supermercados = Supermercado::all();
+
+        return view('Estabelecimento.index',compact('supermercados'));
     }
 
     /**
@@ -24,7 +29,9 @@ class SupermercadoController extends Controller
      */
     public function create()
     {
-        //
+        $pais = Pais::all();
+        $segmentos = Segmento::all();
+        return view('Estabelecimento.create',compact('pais','segmentos'));
     }
 
     /**
@@ -35,7 +42,55 @@ class SupermercadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',
+            'email'=>'required',
+            'telefone'=>'required',
+            'endereco'=>'required',
+            'cidades'=>'required',
+            'segmento' =>'required'
+
+        ]);
+
+
+        $segmento = Segmento::find($request->segmento);
+
+
+
+        $cidade = Cidade::find($request->cidades);
+
+
+        $supermercado = new Supermercado;
+
+
+        $supermercado->nome = $request->nome;
+        $supermercado->CNPJ = $request->CNPJ;
+        $supermercado->telefone = $request->telefone;
+        $supermercado->email = $request->email;
+        $supermercado->endereco = $request->endereco;
+        $supermercado->ativo = $request->ativo;
+
+        $supermercado->cidade()->associate($cidade);
+        $supermercado->segmento()->associate($segmento);
+
+
+
+
+
+
+            if(isset($request->foto)) {
+
+                $arquivo = Input::file('foto');
+                $form = $request->all();
+                $form['foto'] = (string)Image::make($arquivo)->encode('data-url');
+                $supermercado->foto= $form['foto'];
+            }
+
+            $supermercado->save();
+
+            return redirect('estabelecimentos');
+
+
     }
 
     /**
@@ -44,9 +99,11 @@ class SupermercadoController extends Controller
      * @param  \App\Supermercado  $supermercado
      * @return \Illuminate\Http\Response
      */
-    public function show(Supermercado $supermercado)
+    public function show($id)
     {
-        //
+
+        $supermercado = Supermercado::find($id);
+        return view('Estabelecimento.show',compact('supermercado'));
     }
 
     /**
@@ -55,9 +112,17 @@ class SupermercadoController extends Controller
      * @param  \App\Supermercado  $supermercado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supermercado $supermercado)
+    public function edit($id)
     {
-        //
+
+        $supermercado = Supermercado::find($id);
+
+
+        $pais = Pais::all();
+
+
+        $segmentos = Segmento::all();
+        return view('Estabelecimento.edit',compact('supermercado','pais','segmentos'));
     }
 
     /**
@@ -69,7 +134,49 @@ class SupermercadoController extends Controller
      */
     public function update(Request $request, Supermercado $supermercado)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',
+            'email'=>'required',
+            'telefone'=>'required',
+            'endereco'=>'required',
+            'cidades'=>'required'
+
+        ]);
+
+
+        $segmento = Segmento::find($request->segmento);
+
+
+        $cidade = Cidade::find($request->cidades);
+
+
+
+        $supermercado->nome = $request->nome;
+        $supermercado->CNPJ = $request->CNPJ;
+        $supermercado->telefone = $request->telefone;
+        $supermercado->email = $request->email;
+        $supermercado->endereco = $request->endereco;
+        $supermercado->ativo = $request->ativo;
+
+        $supermercado->cidade()->associate($cidade);
+        $supermercado->segmento()->associate($segmento);
+
+
+
+
+
+
+        if(isset($request->foto)) {
+
+            $arquivo = Input::file('foto');
+            $form = $request->all();
+            $form['foto'] = (string)Image::make($arquivo)->encode('data-url');
+            $supermercado->foto= $form['foto'];
+        }
+
+        $supermercado->save();
+
+        return redirect('estabelecimentos');
     }
 
     /**

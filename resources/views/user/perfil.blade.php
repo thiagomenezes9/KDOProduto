@@ -76,6 +76,7 @@ Perfil do Usuario
 
 
                         <input type="hidden" value="1" name="perfil" id="perfil" >
+                        <input type="hidden" value="1" name="ativo" id="ativo" >
 
 
 

@@ -37,7 +37,7 @@
 
                 <a href="{{route('produtos.index')}}">
                     <i class="fa fa-barcode"></i>
-                    <span>Cadastrar Produtos</span>
+                    <span>Produtos</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>
 
@@ -69,7 +69,7 @@
 
 
 
-                <a href="#">
+                <a href="{{route('estabelecimentos.index')}}">
                     <i class="fa fa-strikethrough"></i>
                     <span>Estabelecimentos</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
@@ -118,7 +118,7 @@
 
 
 
-                <a href="#">
+                <a href="{{route('estabelecimento.edit',Auth::user()->supermercado->id)}}">
                     <i class="fa fa-users"></i>
                     <span>Meu Cadastro</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}

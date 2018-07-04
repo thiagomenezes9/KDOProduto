@@ -52,6 +52,7 @@ Route::group(['middleware'=>['web']],function(){
     Route::resource('segmentos','SegmentoController');
     Route::resource('produtos','ProdutoController');
     Route::resource('usuarios','UserController');
+    Route::resource('estabelecimentos','SupermercadoController');
 
 
 
