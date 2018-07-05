@@ -17,9 +17,11 @@
         @endif
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="sidebar-form">
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Produto ..."/>
+                <input type="text" name="termo" id="termo" class="form-control" placeholder="Produto ..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -82,6 +84,13 @@
                     </a>
 
 
+                    <a href="{{route('ofertas.index')}}">
+                        <i class="fa fa-balance-scale"></i>
+                        <span>Ofertas</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+
                 <a href="{{route('marcas.index')}}">
                     <i class="fa fa-tag"></i>
                     <span>Marca</span>
@@ -116,7 +125,7 @@
                 </a>
 
 
-                <a href="#">
+                <a href="{{route('ofertas.index')}}">
                     <i class="fa fa-balance-scale"></i>
                     <span>Minhas Ofertas</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
@@ -159,15 +168,11 @@
 
 
 
-                <a href="#">
-                    <i class="fa fa-cart-plus"></i>
-                    <span>Sugerir Produto</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+
                 @endif
 
                 <a href="{{route('sugestao.index')}}">
-                    <i class="fa fa-book"></i>
+                    <i class="fa fa-cart-plus"></i>
                     <span>Sugestoes</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>

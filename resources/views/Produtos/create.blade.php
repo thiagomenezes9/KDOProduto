@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 <label for="marca" class="col-sm-2 control-label">Marca</label>
                                 <div class="col-sm-10">
-                                    <input list="marca" name="marca">
+                                    <input list="marca" name="marca" class="form-control">
                                     <datalist id="marca">
 
                                         @foreach($marcas as $marca)
@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <label for="marca" class="col-sm-2 control-label">Categoria</label>
                                 <div class="col-sm-10">
-                                    <input list="categoria" name="categoria">
+                                    <input list="categoria" name="categoria" class="form-control">
                                     <datalist id="categoria">
 
                                         @foreach($categorias as $categoria)

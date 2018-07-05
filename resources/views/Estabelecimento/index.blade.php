@@ -52,49 +52,7 @@
                                             Editar
                                         </a>
 
-                                        {{--<a class="btn btn-small btn-danger" data-toggle="modal" href="#myModal{{ $supermercado->id }}" >
-                                            <i class="fa fa-trash-o"></i>
-                                            Excluir
-                                        </a>
 
-                                        <div class="modal fade modal-danger" id="myModal{{ $supermercado->id }}" role="dialog">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Excluir</h4>
-                                                    </div>
-
-                                                    <div class="modal-body text-center">
-                                                        <p>Realmente Deseja excluir {{$supermercado->nome}} ??</p>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-
-                                                        <form id="formDelete{{ $supermercado->id }}"
-                                                              action="{{action('SupermercadoController@destroy',$supermercado)}}" method="POST">
-
-                                                            {{ csrf_field() }}
-                                                            --}}{{--{{ method_field('DELETE') }}--}}{{--
-
-                                                            <input type="hidden" name="_method" value="DELETE">
-
-                                                            <button class="btn btn-danger" type="submit">Excluir</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-
-
-                                                        </form>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
---}}
 
                                     </td>
                                 </tr>

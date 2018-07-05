@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
 use App\Publicacao;
 use App\User;
 use Illuminate\Http\Request;
@@ -29,8 +30,10 @@ class AuthController extends Controller
 
     public function register(){
 
+        $cidades = Cidade::all();
 
-        return view('auth.register');
+
+        return view('auth.register',compact('cidades'));
     }
 
 
@@ -66,7 +69,8 @@ class AuthController extends Controller
             'password'=>['required','min:6','max:255','confirmed'],
             'name'=>['required','max:255'],
             'telefone'=>['required','max:12'],
-            'cpf'=>['required','max:18']
+            'cpf'=>['required','max:18'],
+            'cidade_id'=>'required'
 
         ]);
 

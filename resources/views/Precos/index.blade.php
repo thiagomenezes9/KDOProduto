@@ -44,7 +44,7 @@
                             @foreach($precos as $preco)
                                 <tr align="center">
                                     <td align="left">{{ $preco->produto->descricao }}</td>
-                                    <td align="left">{{ $preco->marca->descricao }}</td>
+                                    <td align="left">{{ $preco->produto->marca->descricao }}</td>
                                     <td align="left">{{ $preco->supermercado->nome }}</td>
                                     <td align="left">{{ $preco->valor }}</td>
                                     <td>
