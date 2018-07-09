@@ -63,7 +63,7 @@ class OfertaController extends Controller
             'valor' => 'required',
             'produto' => 'required',
             'supermercado' =>'required',
-            'dt_ini' =>'required|date|after:'.Carbon::now(),
+            'dt_ini' =>'required|date',
             'dt_fim' =>'required|date|after:'.Carbon::now()
 
         ]);
@@ -78,6 +78,7 @@ class OfertaController extends Controller
         $oferta->valor = $request->valor;
         $oferta->dt_ini = $request->dt_ini;
         $oferta->dt_fim = $request->dt_fim;
+        $oferta->ativo = $request->ativo;
         $oferta->supermercado()->associate($supermercado);
         $oferta->produto()->associate($produto[0]);
 
@@ -154,6 +155,8 @@ class OfertaController extends Controller
 
         $oferta->dt_ini = $request->dt_ini;
         $oferta->dt_fim = $request->dt_fim;
+
+        $oferta->ativo = $request->ativo;
 
 
         $oferta->save();

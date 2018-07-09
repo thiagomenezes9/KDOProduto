@@ -32,6 +32,7 @@
                         @foreach($produtos as $produto)
 
 
+
                             @if(isset($produto->preco))
 
 
@@ -41,24 +42,55 @@
                                 <p style="display: none">{{$menorValor = '0'}}</p>
 
 
+
+
                                 @foreach($produto->preco as $preco)
-                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
 
+                                    <p style="display: none">{{$numOferta = 0}}</p>
 
-                                    @if ($loop->first)
+                                    @if($preco->ativo == 1)
                                         <p style="display: none"> {{$menorValor = $preco->valor}}</p>
                                     @endif
 
+                                    @foreach($produto->oferta as $oferta)
+                                        @if($oferta->supermercado == $preco->supermercado)
+                                            @if($oferta->dt_fim >= \Carbon\Carbon::now())
+                                                @if($menorValor > $oferta->valor)
 
-                                    @if($menorValor > $preco->valor)
+                                                    <p style="display: none">{{$menorValor = $oferta->valor}}</p>
+                                                    <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
+                                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
+
+                                                @endif
+
+                                            @endif
+                                        @endif
+                                    @endforeach
 
 
-                                         <p style="display: none">{{$menorValor = $preco->valor}}</p>
+                                    @if($numOferta == 0)
+                                        @if($preco->ativo == 1)
+                                            @if($menorValor > $preco->valor)
 
 
+                                                <p style="display: none">{{$menorValor = $preco->valor}}</p>
+
+
+                                            @endif
+
+
+
+                                            <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
+
+                                            @endif
                                     @endif
 
-                                    @endforeach
+
+
+
+
+
+                                @endforeach
 
 
                                 <ul class="products-list product-list-in-box">

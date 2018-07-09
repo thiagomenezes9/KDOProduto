@@ -73,17 +73,39 @@
                             <tr>
                                 <td class="col-md-6"><strong>Estabelecimento</strong></td>
                                 <td align="center"><strong>Valor</strong></td>
+                                <td align="center"><strong>Oferta Termina</strong></td>
                             </tr>
                             </thead>
 
 
                             <tbody>
                             @foreach($produto->preco as $preco)
-                                <tr align="center">
-                                    <td align="left">{{ $preco->supermercado->nome }}</td>
-                                    <td align="left">{{ $preco->valor}}</td>
 
-                                </tr>
+                                <p style="display: none">{{$numOferta = 0}}</p>
+                                @foreach($produto->oferta as $oferta)
+                                    @if($oferta->supermercado == $preco->supermercado)
+                                        @if($oferta->dt_fim >= \Carbon\Carbon::now())
+                                            <tr style="background-color: #3f729b" align="center">
+                                                <td align="left">{{ $oferta->supermercado->nome }}</td>
+                                                <td align="right">{{ 'R$'. $oferta->valor}}</td>
+                                                <td align="left">{{$oferta->dt_fim}}</td>
+
+                                            </tr>
+                                            <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
+                                        @endif
+                                     @endif
+                                    @endforeach
+                                @if($numOferta == 0)
+                                    @if($preco->ativo == 1)
+                                    <tr align="center">
+                                        <td align="left">{{ $preco->supermercado->nome }}</td>
+                                        <td align="right">{{ 'R$'. $preco->valor}}</td>
+                                        <td align="left">{{'Preço Normal'}}</td>
+
+
+                                    </tr>
+                                    @endif
+                                @endif
                             @endforeach
                             </tbody>
                         </table>
@@ -100,33 +122,5 @@
         </div>
     </div>
 
-
-@endsection
-
-@section('scriptlocal')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $("#imagem").bind('mouseover', function () {
-
-                $(this).animate({height: "140%", width: "140%"});
-
-            })
-            $("#imagem").bind('mouseout', function () {
-
-                $(this).animate({height: "100%", width: "100%"});
-
-            })
-        })
-    </script>
-
-    <style>
-        textarea {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
 
 @endsection

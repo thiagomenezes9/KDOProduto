@@ -131,7 +131,7 @@
                                     <label for="produto" class="col-sm-2 control-label">Estabelecimento</label>
                                     <div class="col-sm-10">
                                         {{--<input list="supermercado" name="supermercado">--}}
-                                        <select id="supermercado" class="form-control">
+                                        <select id="supermercado" name="supermercado" class="form-control">
 
                                             @foreach($supermercados as $supermercado)
                                                 {{--                                            <option value="{{$c->id}}" {{ $membro['id'] === (isset($coordenacao->responsavel) ? $coordenacao->responsavel: '' ) ? 'selected' : '' }}>{{$membro['name']}}</option>--}}

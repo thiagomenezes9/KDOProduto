@@ -25,7 +25,16 @@
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
+
+
             </div>
+            {{--<div class="input-group">
+                <select class="form-category">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>--}}
         </form>
         <!-- /.search form -->
 

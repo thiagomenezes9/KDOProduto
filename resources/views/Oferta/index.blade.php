@@ -46,10 +46,10 @@
                             @foreach($ofertas as $oferta)
                                 <tr align="center">
                                     <td align="left">{{ $oferta->produto->descricao }}</td>
-                                    <td align="left">{{ $oferta->marca->descricao }}</td>
+                                    <td align="left">{{ $oferta->produto->marca->descricao }}</td>
                                     <td align="left">{{ $oferta->supermercado->nome }}</td>
-                                    <td align="left">{{ $oferta->dt_inicial->format('d/m/Y') }}</td>
-                                    <td align="left">{{ $oferta->dt_final->format('d/m/Y') }}</td>
+                                    <td align="left">{{ \Carbon\Carbon::parse($oferta->dt_ini)->format('d/m/Y') }}</td>
+                                    <td align="left">{{ \Carbon\Carbon::parse($oferta->dt_fim)->format('d/m/Y') }}</td>
                                     <td align="left">{{ $oferta->valor }}</td>
                                     <td>
 
