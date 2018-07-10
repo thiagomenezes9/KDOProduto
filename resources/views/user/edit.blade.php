@@ -75,8 +75,8 @@
                             <div class="form-group">
                                 <label for="nome" class="col-sm-2 control-label" >Nome</label>
                                 <div class="col-sm-10">
-                                    <input name="nome" value="{{ $usuario->name }}" type="text" class="form-control input-lg"
-                                           id="nome" placeholder="Nome do Usuário" autofocus>
+                                    <input name="name" value="{{ $usuario->name }}" type="text" class="form-control input-lg"
+                                           id="name" placeholder="Nome do Usuário" autofocus>
                                 </div>
                             </div>
 
@@ -228,4 +228,42 @@
     </div>
 
 
+@endsection
+
+@section('scriptlocal')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#pais').click(function () {
+                $.ajax({
+                    url:'../../listEstados/'+$('#pais').val(),
+                    type:'GET',
+                    dataType:'json',
+                    success: function (json) {
+                        $('#estados').find('option').remove();
+                        $('#cidades').find('option').remove();
+                        $('#estados').removeAttr('disabled');
+                        $('#pais').find('#paisOp').remove();
+                        $.each(JSON.parse(json), function (i, obj) {
+                            $('#estados').append($('<option>').text(obj.nome).attr('value', obj.id));
+                        })
+                    }
+                })
+            })
+
+            $('#estados').click(function () {
+                $.ajax({
+                    url:'../../listCidades/'+$('#estados').val(),
+                    type:'GET',
+                    dataType:'json',
+                    success: function (json) {
+                        $('#cidades').find('option').remove();
+                        $('#cidades').removeAttr('disabled');
+                        $.each(JSON.parse(json), function (i, obj) {
+                            $('#cidades').append($('<option>').text(obj.nome).attr('value', obj.id));
+                        })
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

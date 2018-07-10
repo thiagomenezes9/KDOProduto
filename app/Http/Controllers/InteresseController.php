@@ -103,7 +103,7 @@ class InteresseController extends Controller
 
         $interesse->save();
 
-        //retornar para pagima que chamou
+        return redirect(url()->previous());
 
     }
 
@@ -115,7 +115,8 @@ class InteresseController extends Controller
 
         $interesse->delete();
 
-        //retornar para pagina que chamou
+
+        return redirect(url()->previous());
 
 
 

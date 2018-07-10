@@ -142,7 +142,7 @@
 
 
 
-                <a href="{{route('estabelecimento.edit',Auth::user()->supermercado->id)}}">
+                <a href="{{route('estabelecimentos.edit',Auth::user()->supermercado->id)}}">
                     <i class="fa fa-users"></i>
                     <span>Meu Cadastro</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
@@ -152,7 +152,7 @@
 
 
                 <a href="#">
-                    <i class="fa fa-chart-bar"></i>
+                    <i class="fa fa-file-pdf-o"></i>
                     <span>Relatorios</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>

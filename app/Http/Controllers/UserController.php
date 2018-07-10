@@ -82,12 +82,12 @@ class UserController extends Controller
     {
 
 
+
+
         $usuario = User::find($id);
 
-       /* $this->validate($request,[
-            'cidade' => 'required'
 
-        ]);*/
+
 
         $this->validate($request, [
             'dt_nasc' => 'required'
@@ -123,18 +123,10 @@ class UserController extends Controller
 
         }
 
-
-        if(isset($request->supermercado)){
-            $supermercado = Supermercado::find($request->supermercado);
-
-            $usuario->tipo = 'LOJA';
-            $usuario->supermercado()->associate($supermercado);
-
-        }
-
+/*
         if($usuario->tipo == 'LOJA'){
 
-            $supermercado = $usuario->supermercado();
+            $supermercado = Supermercado::find($usuario->supermercado->id);
 
             $supermercado->name = $request->name;
             $supermercado->email = $request->email;
@@ -145,23 +137,19 @@ class UserController extends Controller
 
             $supermercado->save();
 
+        }*/
+
+        if(isset($request->supermercado)){
+            $supermercado = Supermercado::find($request->supermercado);
+
+            $usuario->tipo = 'LOJA';
+            $usuario->supermercado()->associate($supermercado);
+
         }
-
-
-
-
-
 
         $usuario->save();
 
         return redirect('dashboard');
-
-
-
-
-
-
-
 
 
 
