@@ -163,8 +163,8 @@
             @if(Auth::user()->tipo == 'USER')
 
 
-                <a href="#">
-                    <i class="fa fa-box-heart"></i>
+                <a href="{{route('interesse.index')}}">
+                    <i class="fa fa-heart"></i>
                     <span>Meus Interreses</span>
                     {{--<i class="fa fa-angle-left pull-right"></i>--}}
                 </a>

@@ -57,6 +57,11 @@ Route::group(['middleware'=>['web']],function(){
     Route::resource('precos','PrecoController');
     Route::resource('ofertas','OfertaController');
     Route::resource('busca','BuscaController');
+    Route::resource('interesse','InteresseController');
+
+
+    Route::get('interesse/remover/{id}','InteresseController@remover')->name('InteresseRemover');
+    Route::get('interesse/adicionar/{id}','InteresseController@adicionar')->name('InteresseAdicionar');
 
 
 

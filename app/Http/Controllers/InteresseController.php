@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interesse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InteresseController extends Controller
 {
@@ -12,9 +13,18 @@ class InteresseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        $interesses = Interesse::all()->where('user_id','=',$user->id);
+
+        return view('Interesse.index',compact('interesses'));
+
     }
 
     /**
@@ -24,7 +34,7 @@ class InteresseController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -44,9 +54,9 @@ class InteresseController extends Controller
      * @param  \App\Interesse  $interesse
      * @return \Illuminate\Http\Response
      */
-    public function show(Interesse $interesse)
+    public function show($produto)
     {
-        //
+
     }
 
     /**
@@ -82,4 +92,34 @@ class InteresseController extends Controller
     {
         //
     }
+
+
+    public function adicionar($produto){
+
+        $interesse = new Interesse();
+
+        $interesse->produto()->associate($produto);
+        $interesse->user()->associate(Auth::user());
+
+        $interesse->save();
+
+        //retornar para pagima que chamou
+
+    }
+
+    public function remover($id){
+
+        $interesse = Interesse::find($id);
+
+
+
+        $interesse->delete();
+
+        //retornar para pagina que chamou
+
+
+
+    }
+
+
 }

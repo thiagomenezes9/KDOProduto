@@ -47,7 +47,28 @@
 
                         <div class="row">
 
-                            <div align="left" class="col col-lg-2"><a href="javascript:history.back()" class="btn btn-info">Voltar</a></div>
+                            <p style="display: none">{{$valida = '0'}}</p>
+
+                            @foreach(Auth::user()->interesse as $interesse)
+
+                                @if($interesse->produto == $produto)
+
+                                    <p style="display: none">{{$valida = '1'}}</p>
+
+                                    <div align="right" class="col col-lg-2"><a href="{{route('InteresseRemover',$interesse->id)}}" class="btn btn-danger
+">Deixar</a></div>
+
+
+
+                                @endif
+
+                            @endforeach
+
+                            @if($valida == '0')
+                                <div align="right" class="col col-lg-2"><a href="{{route('InteresseAdicionar',$produto)}}" class="btn btn-info">Interesse</a></div>
+                            @endif
+
+                                <div align="left" class="col col-lg-2"><a href="javascript:history.back()" class="btn btn-info">Voltar</a></div>
 
                         </div>
                     </div>
@@ -68,7 +89,7 @@
 
                         <p><strong>Preços</strong></p>
 
-                        <table class="table table-bordered table-striped" id="tabEstabelecimentos">
+                        <table class="table table-bordered table-striped" id="tabPrecos">
                             <thead>
                             <tr>
                                 <td class="col-md-6"><strong>Estabelecimento</strong></td>
@@ -88,7 +109,7 @@
                                             <tr style="background-color: #3f729b" align="center">
                                                 <td align="left">{{ $oferta->supermercado->nome }}</td>
                                                 <td align="right">{{ 'R$'. $oferta->valor}}</td>
-                                                <td align="left">{{$oferta->dt_fim}}</td>
+                                                <td align="left">{{\Carbon\Carbon::parse($oferta->dt_fim)->format('d/m/Y')}}</td>
 
                                             </tr>
                                             <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
@@ -122,5 +143,32 @@
         </div>
     </div>
 
+
+@endsection
+
+
+@section('scriptlocal')
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabPrecos').DataTable( {
+                "language": {
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Próxima"
+                    },
+                    "sSearch": "<span>Pesquisar</span> _INPUT_", //search
+                    "lengthMenu": "Exibir _MENU_ registros por página",
+                    "zeroRecords": "Não há resultados para esta busca",
+                    "info": "Exibindo página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(Filtrado de _MAX_ registros)"
+
+                }
+            } );
+
+        })
+    </script>
 
 @endsection

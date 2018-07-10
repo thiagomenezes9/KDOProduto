@@ -7,6 +7,7 @@ use App\Termo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BuscaController extends Controller
 {
@@ -51,21 +52,12 @@ class BuscaController extends Controller
         $termo->user()->associate($usuario);
 
 
-
-
-//        $produtos = Produto::all()->where('descricao','like','%'.$request->termo.'%');
-        $produtos = Produto::all();
+        $termo->save();
 
 
 
-        /* $precos = DB::table('produtos')->where([
-                 ['descricao', 'LIKE', '%'.$request->termo.'%'],
-                 ['ativo', '=', '1']
-                 ])
-                 ->get();*/
+        $produtos = Produto::where('descricao','LIKE','%'.$request->termo.'%')->get();
 
-
-//        dd($produtos);
 
         return view('Busca.index',compact('produtos'));
 
