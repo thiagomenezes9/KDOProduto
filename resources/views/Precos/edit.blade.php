@@ -62,7 +62,7 @@
 
                             <input type="hidden" name="_method" value="PUT">
 
-                            <input type="hidden" name="ativo" value="1"/>
+
 
 
 

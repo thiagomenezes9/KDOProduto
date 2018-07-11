@@ -11,7 +11,7 @@ class Preco extends Model
     use SoftDeletes;
 
 
-    protected $fillable = ['valor','ativo','supermercado_id','produto_id'];
+    protected $fillable = ['valor','supermercado_id','produto_id'];
 
     protected $dates = ['deleted_at'];
 

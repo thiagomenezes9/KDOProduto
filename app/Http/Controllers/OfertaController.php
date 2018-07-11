@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Interesse;
+use App\Mail\EmailNotificacao;
 use App\Oferta;
 use App\Produto;
 use App\Supermercado;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OfertaController extends Controller
 {
@@ -72,19 +76,64 @@ class OfertaController extends Controller
         $produto = Produto::where('descricao',$request->produto)->get();
         $supermercado = Supermercado::find($request->supermercado);
 
+
+
+
+        /*$ofertas = Oferta::all();
+
+
+        Verificar se nova Oferta começa antes da velha oferta acabar
+
+
+        foreach ($ofertas as $ofer){
+            if($ofer->dt_fim >= Carbon::now()){
+            if($ofer->supermercado->id === $supermercado->id){
+                if($ofer->produto->id === $produto[0]->id){
+//                        $precoAnt->ativo = 0;
+//                        $precoAnt->save();
+
+                    $ofer->delete();
+
+                }
+
+            }
+
+//            }
+
+
+        }*/
+
+
+
+
+
+
+
         $oferta = new Oferta();
 
 
         $oferta->valor = $request->valor;
         $oferta->dt_ini = $request->dt_ini;
         $oferta->dt_fim = $request->dt_fim;
-        $oferta->ativo = $request->ativo;
         $oferta->supermercado()->associate($supermercado);
         $oferta->produto()->associate($produto[0]);
 
 
 
         $oferta->save();
+
+
+        $interesses = Interesse::all();
+
+
+
+
+        foreach ($interesses as $interesse){
+            if($interesse->produto->id == $oferta->produto->id){
+                $usuario = User::find($interesse->user->id);
+                Mail::to($usuario)->send(new EmailNotificacao($interesse->produto->id, $oferta->id));
+            }
+        }
 
         return redirect('ofertas');
 
@@ -156,7 +205,6 @@ class OfertaController extends Controller
         $oferta->dt_ini = $request->dt_ini;
         $oferta->dt_fim = $request->dt_fim;
 
-        $oferta->ativo = $request->ativo;
 
 
         $oferta->save();

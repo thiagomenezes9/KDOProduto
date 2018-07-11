@@ -62,7 +62,7 @@
 
                             <input type="hidden" name="_method" value="PUT">
 
-                            <input type="hidden" name="ativo" value="1"/>
+
 
 
 
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label for="produto" class="col-sm-2 control-label" >Produto</label>
                                 <div class="col-sm-10">
-                                    <input name="produto" value="{{ $preco->produto->descricao }}" type="text" class="form-control input-lg"
+                                    <input name="produto" value="{{ $oferta->produto->descricao }}" type="text" class="form-control input-lg"
                                            id="produto" autofocus disabled>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="valor" class="col-sm-2 control-label" >Valor</label>
                                 <div class="col-sm-10">
-                                    <input name="valor" value="{{$preco->valor }}" type="number" class="form-control input-lg"
+                                    <input name="valor" value="{{$oferta->valor }}" type="number" class="form-control input-lg"
                                            id="valor" placeholder="valor" autofocus></input>
                                 </div>
                             </div>

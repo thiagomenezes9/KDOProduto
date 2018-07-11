@@ -16,12 +16,12 @@ class CreateOfertasTable extends Migration
         Schema::create('ofertas', function (Blueprint $table) {
             $table->increments('id');
             $table->double('valor');
-            $table->binary('ativo');
             $table->integer('supermercado_id')->unsigned();
             $table->integer('produto_id')->unsigned();
             $table->dateTime('dt_ini');
             $table->dateTime('dt_fim');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('supermercado_id')->references('id')->on('supermercados');
             $table->foreign('produto_id')->references('id')->on('produtos');

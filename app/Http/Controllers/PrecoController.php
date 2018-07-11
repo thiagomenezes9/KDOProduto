@@ -95,7 +95,7 @@ class PrecoController extends Controller
 
 
         $preco->valor = $request->valor;
-        $preco->ativo = $request->ativo;
+
         $preco->supermercado()->associate($supermercado);
         $preco->produto()->associate($produto[0]);
 
@@ -166,7 +166,7 @@ class PrecoController extends Controller
 
 
         $preco->valor = $request->valor;
-        $preco->ativo = $request->ativo;
+
         $preco->supermercado()->associate($supermercado);
         $preco->produto()->associate($produto);
 
