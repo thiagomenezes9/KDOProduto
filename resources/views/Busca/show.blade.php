@@ -94,7 +94,7 @@
                             <tr>
                                 <td class="col-md-6"><strong>Estabelecimento</strong></td>
                                 <td align="center"><strong>Valor</strong></td>
-                                <td align="center"><strong>Oferta Termina</strong></td>
+                                <td align="center"><strong>Preço</strong></td>
                             </tr>
                             </thead>
 
@@ -109,7 +109,7 @@
                                             <tr style="background-color: #3f729b" align="center">
                                                 <td align="left">{{ $oferta->supermercado->nome }}</td>
                                                 <td align="right">{{ 'R$'. $oferta->valor}}</td>
-                                                <td align="left">{{\Carbon\Carbon::parse($oferta->dt_fim)->format('d/m/Y')}}</td>
+                                                <td align="left">{{'Oferta até '.\Carbon\Carbon::parse($oferta->dt_fim)->format('d/m/Y')}}</td>
 
                                             </tr>
                                             <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
@@ -121,7 +121,7 @@
                                     <tr align="center">
                                         <td align="left">{{ $preco->supermercado->nome }}</td>
                                         <td align="right">{{ 'R$'. $preco->valor}}</td>
-                                        <td align="left">{{'Preço Normal'}}</td>
+                                        <td align="left">{{'Desde de '.\Carbon\Carbon::parse($preco->created_at)->format('d/m/Y')}}</td>
 
 
                                     </tr>

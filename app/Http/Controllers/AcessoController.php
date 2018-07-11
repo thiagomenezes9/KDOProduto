@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Acesso;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AcessoController extends Controller
 {
@@ -82,4 +84,20 @@ class AcessoController extends Controller
     {
         //
     }
+
+    public static function adicionar($produto){
+
+        $acesso = new Acesso();
+
+        $acesso->produto()->associate($produto);
+        $acesso->user()->associate(Auth::user());
+
+        $acesso->data = Carbon::now();
+
+        $acesso->save();
+
+        return 1;
+
+    }
+
 }

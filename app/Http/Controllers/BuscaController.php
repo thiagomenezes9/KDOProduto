@@ -75,6 +75,10 @@ class BuscaController extends Controller
     {
         $produto = Produto::find($id);
 
+        AcessoController::adicionar($produto);
+
+
+
         return view('Busca.show',compact('produto'));
     }
 
