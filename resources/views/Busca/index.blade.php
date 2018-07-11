@@ -24,12 +24,21 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Pesquisa</h3>
 
+                        Formulario com os filtros.
+                        para as marcas de produto
+                        para as categorias do produto
+                        para o segmento de mercado do estabelecimento
+
                     </div>
 
                     <div class="box-body">
 
 
-                        @foreach($produtos as $produto)
+
+
+
+
+                        @forelse($produtos as $produto)
 
 
 
@@ -126,7 +135,11 @@
 
 
 
-                        @endforeach
+                        @empty
+
+                            <h3>Nenhum produto encontrado</h3>
+
+                        @endforelse
 
 
                     </div>

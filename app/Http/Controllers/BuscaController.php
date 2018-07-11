@@ -59,6 +59,20 @@ class BuscaController extends Controller
         $produtos = Produto::where('descricao','LIKE','%'.$request->termo.'%')->get();
 
 
+
+
+
+        /*$pesquisa = Produtos::where('erp_status', 'like', '%'.$status.'%')
+            ->orWhere('erp_cost','like','%'.$texto.'%')
+            ->orWhere('erp_productid','like','%'.$texto.'%')
+            ->orWhereHas('descricao', function ($query) use ($texto) {
+                $query->where('erp_name', 'like', '%'.$texto.'%');
+            })
+            ->orderBy('erp_status')*/
+
+
+
+
         return view('Busca.index',compact('produtos'));
 
 
