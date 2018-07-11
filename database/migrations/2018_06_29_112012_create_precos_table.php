@@ -20,10 +20,13 @@ class CreatePrecosTable extends Migration
             $table->integer('supermercado_id')->unsigned();
             $table->integer('produto_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('supermercado_id')->references('id')->on('supermercados');
             $table->foreign('produto_id')->references('id')->on('produtos');
         });
+
+
     }
 
     /**

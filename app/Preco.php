@@ -3,10 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Preco extends Model
 {
+    use SoftDeletes;
+
+
     protected $fillable = ['valor','ativo','supermercado_id','produto_id'];
+
+    protected $dates = ['deleted_at'];
 
 
     public function supermercado(){

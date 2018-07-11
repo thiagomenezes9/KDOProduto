@@ -19,18 +19,15 @@ class PrecoController extends Controller
     {
         $usuario = Auth::user();
 
-        $precos = Preco::all()->where('ativo','=','1');
+//        $precos = Preco::all()->where('ativo','=','1');
+        $precos = Preco::all();
 
         if($usuario->tipo == 'LOJA'){
-            $precos = Preco::all()->where('supermercado_id','=',$usuario->supermercado_id)
-                                    ->where('ativo','=','1');
+            $precos = Preco::all()->where('supermercado_id','=',$usuario->supermercado_id);
+//                                    ->where('ativo','=','1');
 
 
-            /*$precos = DB::table('precos')->where([
-                ['supermercado_id', '=', '$usuario->supermercado_id'],
-                ['ativo', '=', '1']
-                ])
-                ->get();*/
+
 
         }
 
@@ -69,6 +66,31 @@ class PrecoController extends Controller
         $produto = Produto::where('descricao',$request->produto)->get();
         $supermercado = Supermercado::find($request->supermercado);
 
+
+        $precoAntigo = Preco::all();
+
+
+        foreach ($precoAntigo as $precoAnt){
+//            if($precoAnt->ativo == 1){
+                if($precoAnt->supermercado->id === $supermercado->id){
+                    if($precoAnt->produto->id === $produto[0]->id){
+//                        $precoAnt->ativo = 0;
+//                        $precoAnt->save();
+
+                        $precoAnt->delete();
+
+                    }
+
+                }
+
+//            }
+
+
+        }
+
+
+
+
         $preco = new Preco();
 
 
@@ -106,7 +128,7 @@ class PrecoController extends Controller
     {
         $preco = Preco::find($id);
 
-        return view('Preco.edit',compact('preco'));
+        return view('Precos.edit',compact('preco'));
     }
 
     /**
@@ -119,23 +141,26 @@ class PrecoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'valor' => 'required',
-            'produto' => 'required',
-            'supermercado' =>'required',
+            'valor' => 'required'
+
 
         ]);
 
         $precoOld = Preco::find($id);
 
-        $precoOld->ativo = '0';
+//        $precoOld->ativo = '0';
 
-        $precoOld->save();
+//        $precoOld->save();
 
 
 
 
         $produto = Produto::find($precoOld->produto_id);
         $supermercado = Supermercado::find($request->supermercado);
+
+
+
+        $precoOld->delete();
 
         $preco = new Preco();
 
@@ -168,9 +193,12 @@ class PrecoController extends Controller
     {
         $preco = Preco::find($id);
 
-        $preco->ativo = '0';
+//        $preco->ativo = '0';
+//
+//        $preco->save();
 
-        $preco->save();
+
+        $preco->delete();
         return redirect('precos');
     }
 }
