@@ -28,6 +28,7 @@
                         para as marcas de produto
                         para as categorias do produto
                         para o segmento de mercado do estabelecimento
+                        para a cidade
 
                     </div>
 

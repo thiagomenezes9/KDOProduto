@@ -29,6 +29,20 @@
 
             </div>
             {{--<div class="input-group">
+
+
+                <select name="cidade" class="form-control">
+                    @foreach($cidades as $cidade)
+
+                        <option value="{{$cidade->id}}{{Auth::user()->cidade == $cidade ? "selected":""}}">{{$cidade->nome}}</option>
+
+                    @endforeach
+                </select>
+
+
+
+            </div>--}}
+            {{--<div class="input-group">
                 <select class="form-category">
                     <option>1</option>
                     <option>2</option>
