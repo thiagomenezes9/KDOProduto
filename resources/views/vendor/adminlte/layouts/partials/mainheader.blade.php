@@ -13,27 +13,34 @@
     <nav class="navbar navbar-static-top" role="navigation">
 
 
+
+
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
         </a>
 
 
+        <div class="navbar-form col-md-8">
+            <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="navbar-form">
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+
+                <div class="input-group">
+                    <input type="text" name="termo" id="termo" class="form-horizontal" placeholder="Produto ..."/>
+                    <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
 
 
-        {{--<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>--}}
+                </div>
 
-
-
-
-
+            </form>
+        </div>
 
 
 
     <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
+
 
             <ul class="nav navbar-nav">
 

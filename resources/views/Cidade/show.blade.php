@@ -18,7 +18,7 @@
     <div class="container-fluid spark-screen">
         <div class="row">
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
 
                 <div class="box">
                     <div class="box-header with-border">
@@ -31,10 +31,10 @@
                     <div class="box-body">
 
 
-                        <p><strong><h2>Nome : {{$cidade->nome}}</h2></strong></p><br>
+                        <p><strong><h2>Nome : {{$cidade->nome}}</h2></strong></p>
+                        <br>
                         <p><strong>Sigla : {{$cidade->sigla}}</strong></p><br>
                         <p><strong>Estado : {{$cidade->estado->nome}}</strong></p><br>
-
 
 
                     </div>

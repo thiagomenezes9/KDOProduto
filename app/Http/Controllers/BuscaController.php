@@ -41,6 +41,8 @@ class BuscaController extends Controller
     {
 
 
+
+
         $usuario = Auth::user();
 
         $termo = new Termo();
@@ -58,6 +60,10 @@ class BuscaController extends Controller
 
         $produtos = Produto::where('descricao','LIKE','%'.$request->termo.'%')->get();
 
+
+
+        //Quando buscar, trazer todos os produtos com a descrção, todos os produtos da marca,
+        // somente dos estabeleciimentos da cidade do usuario
 
 
 
