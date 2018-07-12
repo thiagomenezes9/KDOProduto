@@ -43,6 +43,9 @@ class BuscaController extends Controller
 
 
 
+
+
+
         $usuario = Auth::user();
 
         $termo = new Termo();
@@ -59,6 +62,13 @@ class BuscaController extends Controller
 
 
         $produtos = Produto::where('descricao','LIKE','%'.$request->termo.'%')->get();
+
+
+
+        $marcas = DB::select(DB::raw("SELECT marca.id AS id, marca.descricao as descricao FROM marcas as marca inner join produtos as produto on (produto.marca_id = marca.id) where produto.descricao like '%".$request->termo."%'"));
+        $categorias = DB::select(DB::raw("SELECT categoria.id AS id, categoria.descricao as descricao 
+                    FROM categorias as categoria inner join produtos as produto on (produto.categoria_id = categoria.id) 
+                    WHERE produto.descricao like '%".$request->termo."%'"));
 
 
 
@@ -79,7 +89,7 @@ class BuscaController extends Controller
 
 
 
-        return view('Busca.index',compact('produtos'));
+        return view('Busca.index',compact('produtos','marcas','categorias'));
 
 
 

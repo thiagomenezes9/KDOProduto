@@ -24,19 +24,54 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Pesquisa</h3>
 
-                        Formulario com os filtros.
-                        para as marcas de produto
-                        para as categorias do produto
-                        para o segmento de mercado do estabelecimento
-                        para a cidade
+
+                        <form action="#" method="post" enctype="multipart/form-data"
+                              class="form form-inline">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+
+
+
+
+
+                                    <select class="form-control" name="marca" id="marca">
+                                        <option>-- Selecione a Marca --</option>
+                                        @foreach($marcas as $marca)
+                                            <option value="{{$marca->id}}">{{$marca->descricao}}</option>
+                                            @endforeach
+                                    </select>
+
+
+
+                            <select class="form-control" name="categoria" id="categoria">
+                                <option>-- Selecione a Categoria --</option>
+                                @foreach($categorias as $categoria)
+                                    <option value="{{$categoria->id}}">{{$categoria->descricao}}</option>
+                                @endforeach
+                            </select>
+
+
+                            <select class="form-control" name="categoria" id="categoria">
+                                <option>-- Selecione a Segmento --</option>
+                            </select>
+
+                            <select class="form-control" name="categoria" id="categoria">
+                                <option>-- Selecione a Cidade --</option>
+                            </select>
+
+                                {{--<span class="input-group-btn">--}}
+                                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i
+                                      class="fa fa-search"></i></button>
+                                {{--</span>--}}
+
+
+
+
+                        </form>
+
 
                     </div>
 
                     <div class="box-body">
-
-
-
-
 
 
                         @forelse($produtos as $produto)
@@ -92,7 +127,7 @@
 
                                             <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
 
-                                            @endif
+                                        @endif
                                     @endif
 
 
@@ -109,7 +144,8 @@
                                             <img src="{{$produto->foto}}" alt="Product Image">
                                         </div>
                                         <div class="product-info">
-                                            <a href="{{route('busca.show',$produto->id)}}" class="product-title">{{$produto->descricao}}
+                                            <a href="{{route('busca.show',$produto->id)}}"
+                                               class="product-title">{{$produto->descricao}}
 
 
                                                 <span class="label label-success pull-right">Menor valor R$ {{$menorValor}}</span></a>
@@ -122,10 +158,8 @@
                                              </span></strong>
 
 
-
                                         </div>
                                     </li>
-
 
 
                                 </ul>
