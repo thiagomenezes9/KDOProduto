@@ -18,7 +18,7 @@
     <div class="container-fluid spark-screen">
         <div class="row">
 
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
 
                 <div class="box">
                     <div class="box-header with-border">
@@ -31,10 +31,10 @@
                         <table class="table table-bordered table-striped" id="tabOferta">
                             <thead>
                             <tr>
-                                <td class="col-md-4"><strong>Descrição</strong></td>
-                                <td class="col-md-4"><strong>Marca</strong></td>
-                                <td class="col-md-4"><strong>Estabelecimento</strong></td>
-                                <td class="col-md-4"><strong>Inicio</strong></td>
+                                <td class="col-md-3"><strong>Descrição</strong></td>
+                                <td class="col-md-3"><strong>Marca</strong></td>
+                                <td class="col-md-3"><strong>Estabelecimento</strong></td>
+                                <td class="col-md-3"><strong>Inicio</strong></td>
                                 <td class="col-md-4"><strong>Fim</strong></td>
                                 <td class="col-md-4"><strong>Valor</strong></td>
                                 <td align="center"><strong>Ações</strong></td>

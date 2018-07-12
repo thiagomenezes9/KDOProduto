@@ -66,6 +66,11 @@ Route::group(['middleware'=>['web']],function(){
 
 
 
+    Route::get('relatorios', 'RelatorioController@exibirOpcoesRelatorio')->name('relatorios');
+    Route::post('relatorioSelecionado', 'RelatorioController@index');
+
+
+
 
 
 

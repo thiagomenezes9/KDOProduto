@@ -84,7 +84,7 @@
     <div class="full-page register-page" filter-color="black" data-image="../../assets/img/register.jpg">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <div class="card card-signup">
 
                         <div class="card-content">

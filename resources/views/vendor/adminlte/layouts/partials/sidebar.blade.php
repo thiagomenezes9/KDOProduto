@@ -8,47 +8,29 @@
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{ Auth::user()->foto ? Auth::user()->foto : Gravatar::get($user->email)}}" class="img-circle" alt="User Image" />
+                    <img src="{{ Auth::user()->foto ? Auth::user()->foto : Gravatar::get($user->email)}}"
+                         class="img-circle" alt="User Image"/>
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::user()->name}}</p>
                 </div>
             </div>
-        @endif
+    @endif
 
-        <!-- search form (Optional) -->
+    <!-- search form (Optional) -->
         <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="sidebar-form">
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
             <div class="input-group">
                 <input type="text" name="termo" id="termo" class="form-control" placeholder="Produto ..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i
+                            class="fa fa-search"></i></button>
               </span>
 
 
             </div>
-            {{--<div class="input-group">
 
-
-                <select name="cidade" class="form-control">
-                    @foreach($cidades as $cidade)
-
-                        <option value="{{$cidade->id}}{{Auth::user()->cidade == $cidade ? "selected":""}}">{{$cidade->nome}}</option>
-
-                    @endforeach
-                </select>
-
-
-
-            </div>--}}
-            {{--<div class="input-group">
-                <select class="form-category">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-            </div>--}}
         </form>
         <!-- /.search form -->
 
@@ -57,21 +39,21 @@
             <li class="header">Menu</li>
 
             <li>
-            <!-- Optionally, you can add icons to the links -->
-            @if(Auth::user()->tipo == 'ADMIN')
+                <!-- Optionally, you can add icons to the links -->
+                @if(Auth::user()->tipo == 'ADMIN')
 
-                <a href="{{route('produtos.index')}}">
-                    <i class="fa fa-barcode"></i>
-                    <span>Produtos</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('produtos.index')}}">
+                        <i class="fa fa-barcode"></i>
+                        <span>Produtos</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
-                <a href="{{route('usuarios.index')}}">
-                    <i class="fa fa-users"></i>
-                    <span>Usuarios</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('usuarios.index')}}">
+                        <i class="fa fa-users"></i>
+                        <span>Usuarios</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
                     <a href="{{route('cidades.index')}}">
                         <i class="fa fa-map"></i>
@@ -94,11 +76,11 @@
 
 
 
-                <a href="{{route('estabelecimentos.index')}}">
-                    <i class="fa fa-strikethrough"></i>
-                    <span>Estabelecimentos</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('estabelecimentos.index')}}">
+                        <i class="fa fa-strikethrough"></i>
+                        <span>Estabelecimentos</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
                     <a href="{{route('precos.index')}}">
                         <i class="fa fa-barcode"></i>
@@ -114,80 +96,86 @@
                     </a>
 
 
-                <a href="{{route('marcas.index')}}">
-                    <i class="fa fa-tag"></i>
-                    <span>Marca</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('marcas.index')}}">
+                        <i class="fa fa-tag"></i>
+                        <span>Marca</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
-                <a href="{{route('segmentos.index')}}">
-                    <i class="fa fa-folder-open"></i>
-                    <span>Segmento</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
-
-
-                <a href="{{route('categorias.index')}}">
-                    <i class="fa fa-shopping-bag"></i>
-                    <span>Categoria</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('segmentos.index')}}">
+                        <i class="fa fa-folder-open"></i>
+                        <span>Segmento</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
+                    <a href="{{route('categorias.index')}}">
+                        <i class="fa fa-shopping-bag"></i>
+                        <span>Categoria</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
-
-
-                @endif
-            @if(Auth::user()->tipo == 'LOJA')
-
-                <a href="{{route('precos.index')}}">
-                    <i class="fa fa-barcode"></i>
-                    <span>Meus Produto</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
-
-
-                <a href="{{route('ofertas.index')}}">
-                    <i class="fa fa-balance-scale"></i>
-                    <span>Minhas Ofertas</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('relatorios')}}">
+                        <i class="fa fa-file-pdf-o"></i>
+                        <span>Relatorios</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
 
-                <a href="{{route('estabelecimentos.edit',Auth::user()->supermercado->id)}}">
-                    <i class="fa fa-users"></i>
-                    <span>Meu Cadastro</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
-
-
-
-
-                <a href="#">
-                    <i class="fa fa-file-pdf-o"></i>
-                    <span>Relatorios</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
 
 
                 @endif
+                @if(Auth::user()->tipo == 'LOJA')
 
-            @if(Auth::user()->tipo == 'USER')
+                    <a href="{{route('precos.index')}}">
+                        <i class="fa fa-barcode"></i>
+                        <span>Meus Produto</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
-                <a href="{{route('interesse.index')}}">
-                    <i class="fa fa-heart"></i>
-                    <span>Meus Interreses</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+                    <a href="{{route('ofertas.index')}}">
+                        <i class="fa fa-balance-scale"></i>
+                        <span>Minhas Ofertas</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
-                <a href="{{route('perfil')}}">
-                    <i class="fa fa-users"></i>
-                    <span>Meus Dados</span>
-                    {{--<i class="fa fa-angle-left pull-right"></i>--}}
-                </a>
+
+
+                    <a href="{{route('estabelecimentos.edit',Auth::user()->supermercado->id)}}">
+                        <i class="fa fa-users"></i>
+                        <span>Meu Cadastro</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+
+
+
+                    <a href="{{route('relatorios')}}">
+                        <i class="fa fa-file-pdf-o"></i>
+                        <span>Relatorios</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+
+                @endif
+
+                @if(Auth::user()->tipo == 'USER')
+
+
+                    <a href="{{route('interesse.index')}}">
+                        <i class="fa fa-heart"></i>
+                        <span>Meus Interreses</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
+                    <a href="{{route('perfil')}}">
+                        <i class="fa fa-users"></i>
+                        <span>Meus Dados</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
 
 
 
