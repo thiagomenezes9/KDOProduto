@@ -28,7 +28,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         div img {
             display: block;
             width: 100%;
-            height:800px;
+            height:900px;
         }
     </style>
     <script type="text/javascript">
@@ -76,9 +76,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     {{--<h2 class="w3-center">AskLunch</h2>--}}
 
     <div class="myDiv">
-        <img class="mySlides" src="{{URL::asset('/imagens/imagem01.jpeg')}}">
-        <img class="mySlides" src="{{URL::asset('/imagens/imagem03.jpg')}}">
-        <img class="mySlides" src="{{URL::asset('/imagens/imagem02.png')}}">
+        <img class="mySlides" src="{{URL::asset('/imagens/principal.png')}}">
+
     </div>
 
 
