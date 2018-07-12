@@ -13,7 +13,13 @@ class DashboardController extends Controller
 {
     public function index(){
 
-        return view('welcome');
+
+        //ver os 10 produtos com oferta
+        //e ou ver os 10 produtos com mais acessos
+        //e ou ver os 10 produtos com mais interesses
+
+
+        return view('dashboard');
     }
 
 

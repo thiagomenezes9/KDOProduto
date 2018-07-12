@@ -20,18 +20,26 @@
         </a>
 
 
-        <div class="navbar-form col-md-8">
+        <div class="navbar-form col-md-12">
             <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="navbar-form">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
                 <div class="input-group">
-                    <input type="text" name="termo" id="termo" class="form-horizontal" placeholder="Produto ..."/>
+                    <input type="text" name="termo" id="termo" class="form-control" placeholder="Produto ..."/>
                     <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
 
 
                 </div>
+
+                {{--<div class="input-group">
+                    <select name="cidade" id="cidade" class="form-control" >
+
+                        <option >{{Auth::user()->name}}</option>
+
+                    </select>
+                </div>--}}
 
             </form>
         </div>
@@ -114,4 +122,25 @@
             </ul>
         </div>
     </nav>
+
+
+    <script type="text/javascript">
+
+        $('#cidade').click(function () {
+            $.ajax({
+                url:'../allCidades/',
+                type:'GET',
+                dataType:'json',
+                success: function (json) {
+                    //$('#cidades').find('option').remove();
+                    //$('#cidades').removeAttr('disabled');
+                    $.each(JSON.parse(json), function (i, obj) {
+                        $('#cidades').append($('<option>').text(obj.nome).attr('value', obj.id));
+                    })
+                }
+            })
+        })
+
+    </script>
+
 </header>

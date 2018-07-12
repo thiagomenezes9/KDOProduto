@@ -31,7 +31,7 @@ class User extends Authenticatable
 
 
     public function cidade(){
-        return $this->belongsTo('App\Cidade');
+        return $this->belongsTo('App\Cidade','cidade_id');
     }
 
     public function supermercado(){

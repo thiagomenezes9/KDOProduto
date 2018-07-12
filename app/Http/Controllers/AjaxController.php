@@ -19,4 +19,10 @@ class AjaxController extends Controller
         $cidades = Cidade::select('id', 'nome')->where('estados_id','=',$id)->get();
         return response()->json(json_encode($cidades));
     }
+
+    public function allCidades(){
+        $cidades = Cidade::all();
+        return response()->json(json_encode($cidades));
+    }
+
 }

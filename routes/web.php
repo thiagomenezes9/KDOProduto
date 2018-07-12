@@ -40,6 +40,7 @@ Route::group(['middleware'=>['web']],function(){
 
     Route::get('listEstados/{id}', 'AjaxController@listEstados');
     Route::get('listCidades/{id}', 'AjaxController@listCidades');
+    Route::get('allCidades', 'AjaxController@allCidades');
 
 
     Route::resource('pais','PaisController');
