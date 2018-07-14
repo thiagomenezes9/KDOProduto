@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\Segmento;
 use App\Termo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function Sodium\add;
 
 class BuscaController extends Controller
 {
@@ -42,10 +44,6 @@ class BuscaController extends Controller
 
 
 
-
-
-
-
         $usuario = Auth::user();
 
         $termo = new Termo();
@@ -69,6 +67,32 @@ class BuscaController extends Controller
         $categorias = DB::select(DB::raw("SELECT categoria.id AS id, categoria.descricao as descricao 
                     FROM categorias as categoria inner join produtos as produto on (produto.categoria_id = categoria.id) 
                     WHERE produto.descricao like '%".$request->termo."%'"));
+
+
+
+
+        /*$segmentos = array();
+        $cidades = array();
+
+        foreach ($produtos as $produto){
+            foreach ($produto->preco as $preco) {
+
+                if(!in_array($preco->supermercado->segmento->id,$segmentos)){
+                    //$segmentos += $preco->supermercado->segmento->id;
+                   array_add($segmentos,$preco->supermercado->segmento->id);
+                }
+                if(!in_array($preco->supermercado->cidade->id,$cidades)){
+                    $cidades += $preco->supermercado->cidade->id;
+                }
+
+            }
+        }
+
+
+        $Segmentos2 = Segmento::find($segmentos);
+
+        //dd($segmentos,$cidades,$Segmentos2);*/
+
 
 
 

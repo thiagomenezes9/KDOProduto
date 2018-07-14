@@ -32,109 +32,97 @@
                         @foreach($interesses as $interesse)
 
 
-
-                            @if(isset($interesse->produto->preco))
-
-
-
-
-                                <p style="display: none">{{$numSuper = '0'}}</p>
-                                <p style="display: none">{{$menorValor = '0'}}</p>
+                            <p style="display: none">{{$numSuper = '0'}}</p>
+                            <p style="display: none">{{$menorValor = '0'}}</p>
 
 
 
 
-                                @foreach($interesse->produto->preco as $preco)
+                            @foreach($interesse->produto->preco as $preco)
 
-                                    <p style="display: none">{{$numOferta = 0}}</p>
+                                <p style="display: none">{{$numOferta = 0}}</p>
 
-                                    @if($preco->ativo == 1)
-                                        <p style="display: none"> {{$menorValor = $preco->valor}}</p>
-                                    @endif
+                                @if($loop->first)
+                                    <p style="display: none"> {{$menorValor = $preco->valor}}</p>
+                                @endif
 
-                                    @foreach($interesse->produto->oferta as $oferta)
-                                        @if($oferta->supermercado == $preco->supermercado)
-                                            @if($oferta->dt_fim >= \Carbon\Carbon::now())
-                                                @if($menorValor > $oferta->valor)
+                                @foreach($interesse->produto->oferta as $oferta)
+                                    @if($oferta->supermercado == $preco->supermercado)
+                                        @if($oferta->dt_fim >= \Carbon\Carbon::now())
+                                            @if($menorValor > $oferta->valor)
 
-                                                    <p style="display: none">{{$menorValor = $oferta->valor}}</p>
-                                                    <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
-                                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
-
-                                                @endif
-
-                                            @endif
-                                        @endif
-                                    @endforeach
-
-
-                                    @if($numOferta == 0)
-                                        @if($preco->ativo == 1)
-                                            @if($menorValor > $preco->valor)
-
-
-                                                <p style="display: none">{{$menorValor = $preco->valor}}</p>
-
+                                                <p style="display: none">{{$menorValor = $oferta->valor}}</p>
+                                                <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
+                                                <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
 
                                             @endif
 
-
-
-                                            <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
-
                                         @endif
                                     @endif
-
-
-
-
-
-
                                 @endforeach
 
 
-                                <ul class="products-list product-list-in-box">
-                                    <li class="item">
-                                        <div class="product-img">
-                                            <img src="{{$interesse->produto->foto}}" alt="Product Image">
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="{{route('busca.show',$interesse->produto->id)}}" class="product-title">{{$interesse->produto->descricao}}
+                                @if($numOferta == 0)
+
+                                    @if($menorValor > $preco->valor)
 
 
-                                                <span class="label label-success pull-right">Menor valor R$ {{$menorValor}}</span></a>
+                                        <p style="display: none">{{$menorValor = $preco->valor}}</p>
+
+
+                                    @endif
 
 
 
-                                            <a href="{{route('InteresseRemover',$interesse->id)}}" class="product-title">
+                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
+
+                                @endif
 
 
-                                                <span class="label label-danger pull-right">Deixar</span></a>
 
-                                            <span class="product-description">
+
+
+
+
+                            @endforeach
+
+
+                            <ul class="products-list product-list-in-box">
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="{{$interesse->produto->foto}}" alt="Product Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="{{route('busca.show',$interesse->produto->id)}}"
+                                           class="product-title">{{$interesse->produto->descricao}}
+
+
+                                            <span class="label label-success pull-right">Menor valor R$ {{$menorValor}}</span></a>
+
+
+                                        <a href="{{route('InteresseRemover',$interesse->id)}}" class="product-title">
+
+
+                                            <span class="label label-danger pull-right">Deixar</span></a>
+
+                                        <span class="product-description">
                                               {{$interesse->produto->marca->descricao}}
                                              </span>
 
 
-
-
-
-                                            <strong><span class="product-description">
+                                        <strong><span class="product-description">
                                               Produto em {{$numSuper}} Estabelecimentos
                                              </span></strong>
 
 
-
-                                        </div>
-                                    </li>
-
+                                    </div>
+                                </li>
 
 
-                                </ul>
+                            </ul>
 
 
 
-                            @endif
 
 
 

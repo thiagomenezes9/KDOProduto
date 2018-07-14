@@ -11,109 +11,66 @@
             <div class="col-md-12">
 
 
-
                 <div class="row">
 
                     <div class="panel panel-default">
                         <div class="panel-body">
 
+                            @if(isset($ofertas))
+
+
+
+                                @foreach($ofertas as $oferta)
+
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="info-box">
+                                            <a href="{{route('busca.show',$oferta->produto->id)}}">
+                                                <span class="info-box-icon"><img src="{{$oferta->produto->foto}}"
+                                                                                 alt="Product Image"
+                                                                                 class="imagem"></span>
+                                            </a>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">{{$oferta->produto->descricao}}</span>
+                                                <span class="info-box-number">R$ {{$oferta->valor}}</span>
+                                                <span class="info-box-text"><small>{{$oferta->supermercado->nome}}</small></span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+
+
+
+                                @endforeach
 
 
 
 
 
+                            @else
+                                <h1>Sem Ofertas</h1>
+                            @endif
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+        @endsection
 
-@section('scriptlocal')
+        @section('scriptlocal')
 
-    {{--<style>--}}
-        {{--#imagem {--}}
-            {{--width: 1200px;--}}
-            {{--height: 400px;--}}
-            {{--/*width: 100%;*/--}}
-            {{--/*height: 100%;*/--}}
-        {{--}--}}
+            <style>
+                .imagem {
 
-        {{--#texto {--}}
-            {{--position: absolute;--}}
-            {{--margin-top: -350px;--}}
-            {{--left: 50px;--}}
-            {{--z-index: 9999;--}}
-            {{--color: black;--}}
-            {{--max-width: 800px;--}}
-            {{--font-size: 25px;--}}
-            {{--font-weight: bold;--}}
-        {{--}--}}
-
-        {{--#titulo {--}}
-            {{--position: absolute;--}}
-            {{--margin-top: -410px;--}}
-            {{--left: 200px;--}}
-            {{--z-index: 9999;--}}
-            {{--color: white;--}}
-            {{--max-width: 800px;--}}
-            {{--font-size: 42px;--}}
-            {{--font-weight: bold;--}}
-        {{--}--}}
-
-    {{--</style>--}}
+                    width: 100px;
+                    height: 100px;
+                }
 
 
+            </style>
 
-    <style>
-        #imagem {
-
-            width: 100%;
-            height: 100%;
-        }
-
-
-        #texto {
-            position: absolute;
-            margin-top: -42%;
-            left: 50px;
-            z-index:9999;
-            color: black;
-            max-width: 800px;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-
-        #titulo{
-            position: absolute;
-            margin-top: -51%;
-            left: 150px;
-            z-index:9999;
-            color: white;
-            max-width: 800px;
-            font-size: 42px;
-            font-weight: bold;
-        }
-
-    </style>
-
-
-
-    {{--<script>--}}
-    {{--//Verifica e solicita se o usuario tem permissao para utilizar as notificações do Chrome--}}
-    {{--document.addEventListener('DOMContentLoaded', function () {--}}
-    {{--if (!Notification) {--}}
-    {{--alert('Desktop notifications not available in your browser. Try Chromium.');--}}
-    {{--return;--}}
-    {{--}--}}
-
-    {{--if (Notification.permission !== "granted")--}}
-    {{--Notification.requestPermission();--}}
-    {{--});--}}
-
-
-    {{--</script>--}}
 
 
 @endsection

@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="valor" class="col-sm-2 control-label" >Valor</label>
                                 <div class="col-sm-10">
-                                    <input name="valor" value="{{ old('valor') }}" type="number" class="form-control input-lg"
+                                    <input name="valor" value="{{ old('valor') }}" type="text" class="form-control input-lg valor"
                                            id="valor" placeholder="valor" autofocus></input>
                                 </div>
                             </div>
@@ -180,5 +180,15 @@
 @section('scriptlocal')
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('.phone_with_ddd').mask('(00) 0000-0000');
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+            $('.valor').mask('000000000000000.00', {reverse: true});
+        });
+    </script>
 @endsection

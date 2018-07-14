@@ -21,7 +21,7 @@
 
 
         <div class="navbar-form col-md-12">
-            <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="navbar-form">
+            <form action="{{route('busca.store')}}" method="post" enctype="multipart/form-data" class="form form-inline">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
                 <div class="input-group">

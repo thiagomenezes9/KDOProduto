@@ -80,26 +80,17 @@ Perfil do Usuario
 
 
 
-                        @if($usuario->name != 'admin')
+
 
                             <div class="form-group">
-                                <label for="nome" class="col-sm-2 control-label" >Nome</label>
+                                <label for="name" class="col-sm-2 control-label" >Nome</label>
                                 <div class="col-sm-10">
-                                    <input name="nome" value="{{ $usuario->name }}" type="text" class="form-control input-lg"
-                                           id="nome" placeholder="Nome do Usuário" autofocus>
+                                    <input name="name" value="{{ $usuario->name }}" type="text" class="form-control input-lg"
+                                           id="name" placeholder="Nome do Usuário" autofocus>
                                 </div>
                             </div>
 
-                         @else
-                            <div class="form-group">
-                                <label for="nome" class="col-sm-2 control-label" >Nome</label>
-                                <div class="col-sm-10">
-                                    <input name="nome" value="{{ $usuario->name }}" type="text" class="form-control input-lg"
-                                           id="nome" placeholder="Nome do Usuário" autofocus disabled>
-                                </div>
-                            </div>
 
-                        @endif
 
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label" >E-mail</label>

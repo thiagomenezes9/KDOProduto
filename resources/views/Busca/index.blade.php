@@ -25,7 +25,7 @@
                         <h3 class="box-title">Pesquisa</h3>
 
 
-                        <form action="#" method="post" enctype="multipart/form-data"
+                        {{--<form action="#" method="post" enctype="multipart/form-data"
                               class="form form-inline">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
@@ -58,87 +58,96 @@
                                 <option>-- Selecione a Cidade --</option>
                             </select>
 
-                                {{--<span class="input-group-btn">--}}
+                                --}}{{--<span class="input-group-btn">--}}{{--
                                     <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i
                                       class="fa fa-search"></i></button>
-                                {{--</span>--}}
+                                --}}{{--</span>--}}{{--
 
 
 
 
-                        </form>
+                        </form>--}}
 
 
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body" id="pagination">
 
 
                         @forelse($produtos as $produto)
 
 
 
-                            @if(isset($produto->preco))
+                            {{--@if(isset($produto->preco))--}}
 
 
 
 
-                                <p style="display: none">{{$numSuper = '0'}}</p>
-                                <p style="display: none">{{$menorValor = '0'}}</p>
+                            <p style="display: none">{{$numSuper = '0'}}</p>
+                            <p style="display: none">{{$menorValor = '0'}}</p>
 
 
 
 
-                                @foreach($produto->preco as $preco)
-
-                                    <p style="display: none">{{$numOferta = 0}}</p>
-
-                                    @if($preco->ativo == 1)
-                                        <p style="display: none"> {{$menorValor = $preco->valor}}</p>
-                                    @endif
-
-                                    @foreach($produto->oferta as $oferta)
-                                        @if($oferta->supermercado == $preco->supermercado)
-                                            @if($oferta->dt_fim >= \Carbon\Carbon::now())
-                                                @if($menorValor > $oferta->valor)
-
-                                                    <p style="display: none">{{$menorValor = $oferta->valor}}</p>
-                                                    <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
-                                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
-
-                                                @endif
-
-                                            @endif
-                                        @endif
-                                    @endforeach
+                            @foreach($produto->preco as $preco)
 
 
-                                    @if($numOferta == 0)
-                                        @if($preco->ativo == 1)
-                                            @if($menorValor > $preco->valor)
+                                <p style="display: none">{{$numOferta = 0}}</p>
+
+                                @if($loop->first)
+                                    <p style="display: none"> {{$menorValor = $preco->valor}}</p>
+                                @endif
 
 
-                                                <p style="display: none">{{$menorValor = $preco->valor}}</p>
+                                @foreach($produto->oferta as $oferta)
+                                    @if($oferta->supermercado == $preco->supermercado)
+                                        @if($oferta->dt_fim >= \Carbon\Carbon::now() && $oferta->dt_ini <= \Carbon\Carbon::now())
+                                            @if($menorValor > $oferta->valor)
 
+                                                <p style="display: none">{{$menorValor = $oferta->valor}}</p>
+                                                <p style="display: none">{{$numOferta = $numOferta + 1}}</p>
+                                                <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
 
                                             @endif
 
-
-
-                                            <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
-
                                         @endif
                                     @endif
-
-
-
-
-
-
                                 @endforeach
 
 
+                                @if($numOferta == 0)
+
+                                    @if($menorValor > $preco->valor)
+
+
+                                        <p style="display: none">{{$menorValor = $preco->valor}}</p>
+
+
+                                    @endif
+
+
+
+                                    <p style="display: none">{{$numSuper = $numSuper + 1}}</p>
+
+
+                                @endif
+
+
+
+
+
+
+                            @endforeach
+
+
+
+
+
+
+
                                 <ul class="products-list product-list-in-box">
+
+
                                     <li class="item">
                                         <div class="product-img">
                                             <img src="{{$produto->foto}}" alt="Product Image">
@@ -166,7 +175,9 @@
 
 
 
-                            @endif
+
+
+                            {{--@endif--}}
 
 
 
@@ -177,7 +188,11 @@
                         @endforelse
 
 
+
+
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -187,6 +202,7 @@
 @endsection
 
 @section('scriptlocal')
+
 
 
 

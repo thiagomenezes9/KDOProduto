@@ -105,7 +105,7 @@
                                 <p style="display: none">{{$numOferta = 0}}</p>
                                 @foreach($produto->oferta as $oferta)
                                     @if($oferta->supermercado == $preco->supermercado)
-                                        @if($oferta->dt_fim >= \Carbon\Carbon::now())
+                                        @if($oferta->dt_fim >= \Carbon\Carbon::now() && $oferta->dt_ini <= \Carbon\Carbon::now())
                                             <tr style="background-color: #3f729b" align="center">
                                                 <td align="left">{{ $oferta->supermercado->nome }}</td>
                                                 <td align="right">{{ 'R$'. $oferta->valor}}</td>
@@ -117,7 +117,7 @@
                                      @endif
                                     @endforeach
                                 @if($numOferta == 0)
-                                    @if($preco->ativo == 1)
+
                                     <tr align="center">
                                         <td align="left">{{ $preco->supermercado->nome }}</td>
                                         <td align="right">{{ 'R$'. $preco->valor}}</td>
@@ -125,7 +125,7 @@
 
 
                                     </tr>
-                                    @endif
+
                                 @endif
                             @endforeach
                             </tbody>

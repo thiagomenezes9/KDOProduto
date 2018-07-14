@@ -108,11 +108,12 @@ class OfertaController extends Controller
 
 
 
+        $valor = floatval($request->valor);
 
         $oferta = new Oferta();
 
 
-        $oferta->valor = $request->valor;
+        $oferta->valor = $valor;
         $oferta->dt_ini = $request->dt_ini;
         $oferta->dt_fim = $request->dt_fim;
         $oferta->supermercado()->associate($supermercado);
@@ -196,8 +197,9 @@ class OfertaController extends Controller
 
 
 
+        $valor = floatval($request->valor);
 
-        $oferta->valor = $request->valor;
+        $oferta->valor = $valor;
 
         $oferta->supermercado()->associate($supermercado);
         $oferta->produto()->associate($produto);

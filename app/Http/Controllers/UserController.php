@@ -7,6 +7,8 @@ use App\Pais;
 use App\Supermercado;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -113,6 +115,8 @@ class UserController extends Controller
        $usuario->dt_nasc = $request->dt_nasc;
        $usuario->sexo = $request->sexo;
        $usuario->ativo = $request->ativo;
+
+
 
 
         if(isset($request->cidade)){

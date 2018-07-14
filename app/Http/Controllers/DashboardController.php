@@ -21,15 +21,14 @@ class DashboardController extends Controller
         //e ou ver os 10 produtos com mais acessos
         //e ou ver os 10 produtos com mais interesses
 
-        $ofertas = Oferta::where('dt_fim','>=',Carbon::now());
-
-        $acessos = Acesso::all()->groupBy('produto_id');
-
-        $interesses = Interesse::all()->groupBy('produto_id');
+        $ofertas = Oferta::where('dt_fim','>=',Carbon::now())
+                        ->where('dt_ini','<=',Carbon::now())->get();
 
 
 
-        return view('dashboard');
+
+
+        return view('dashboard',compact('ofertas'));
     }
 
 

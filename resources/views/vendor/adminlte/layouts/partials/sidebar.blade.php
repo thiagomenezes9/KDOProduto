@@ -171,6 +171,12 @@
                         {{--<i class="fa fa-angle-left pull-right"></i>--}}
                     </a>
 
+                    <a href="{{route('dashboard')}}">
+                        <i class="fa fa-heart"></i>
+                        <span>Ofertas</span>
+                        {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                    </a>
+
                     <a href="{{route('perfil')}}">
                         <i class="fa fa-users"></i>
                         <span>Meus Dados</span>

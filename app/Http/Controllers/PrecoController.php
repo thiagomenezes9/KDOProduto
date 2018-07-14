@@ -62,6 +62,8 @@ class PrecoController extends Controller
 
         ]);
 
+        $valor = floatval($request->valor);
+
 
         $produto = Produto::where('descricao',$request->produto)->get();
         $supermercado = Supermercado::find($request->supermercado);
@@ -94,7 +96,7 @@ class PrecoController extends Controller
         $preco = new Preco();
 
 
-        $preco->valor = $request->valor;
+        $preco->valor = $valor;
 
         $preco->supermercado()->associate($supermercado);
         $preco->produto()->associate($produto[0]);
@@ -153,7 +155,7 @@ class PrecoController extends Controller
 //        $precoOld->save();
 
 
-
+        $valor = floatval($request->valor);
 
         $produto = Produto::find($precoOld->produto_id);
         $supermercado = Supermercado::find($request->supermercado);
@@ -165,7 +167,7 @@ class PrecoController extends Controller
         $preco = new Preco();
 
 
-        $preco->valor = $request->valor;
+        $preco->valor = $valor;
 
         $preco->supermercado()->associate($supermercado);
         $preco->produto()->associate($produto);
