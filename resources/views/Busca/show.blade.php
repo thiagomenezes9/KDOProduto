@@ -76,6 +76,8 @@
                     <div class="box-body">
 
 
+                        <img src="{{$produto->foto}}" width="250px" height="250px" id="imagem" class="col-md-4">
+
                         <p><strong><h2>Produto : {{$produto->descricao}}</h2></strong></p><br>
                         <p><strong>Código de Barras : </strong> {{$produto->cd_barras}}</p><br>
                         <p><strong>Marca : </strong> {{$produto->marca->descricao}}</p><br>
@@ -83,11 +85,11 @@
 
 
 
-                        <p><strong>Imagem : </strong></p><br>
+                       {{-- <p><strong>Imagem : </strong></p><br>--}}
 
-                        <img src="{{$produto->foto}}" width="100%" height="100%" id="imagem">
 
-                        <p><strong>Preços</strong></p>
+
+                        <br><br><br><br><h3><strong>Preços</strong></h3>
 
                         <table class="table table-bordered table-striped" id="tabPrecos">
                             <thead>

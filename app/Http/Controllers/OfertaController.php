@@ -79,29 +79,25 @@ class OfertaController extends Controller
 
 
 
-        /*$ofertas = Oferta::all();
+        $ofertas = Oferta::all();
 
 
-        Verificar se nova Oferta começa antes da velha oferta acabar
+        //Verificar se nova Oferta começa antes da velha oferta acabar
 
 
-        foreach ($ofertas as $ofer){
-            if($ofer->dt_fim >= Carbon::now()){
-            if($ofer->supermercado->id === $supermercado->id){
-                if($ofer->produto->id === $produto[0]->id){
-//                        $precoAnt->ativo = 0;
-//                        $precoAnt->save();
+        foreach ($ofertas as $ofer) {
 
-                    $ofer->delete();
-
+            if ($ofer->supermercado->id == $supermercado->id) {
+                if ($ofer->produto->id == $produto->id) {
+                    if ($request->dt_ini < $ofer->dt_fim) {
+                        $ofer->delete();
+                    }
                 }
 
             }
+        }
 
-//            }
 
-
-        }*/
 
 
 
@@ -195,6 +191,24 @@ class OfertaController extends Controller
         $produto = Produto::find($oferta->produto_id);
         $supermercado = Supermercado::find($request->supermercado);
 
+
+        $ofertas = Oferta::all();
+
+
+        //Verificar se nova Oferta começa antes da velha oferta acabar
+
+
+        foreach ($ofertas as $ofer) {
+
+            if ($ofer->supermercado->id == $supermercado->id) {
+                if ($ofer->produto->id == $produto->id) {
+                    if ($request->dt_ini < $ofer->dt_fim) {
+                        $ofer->delete();
+                    }
+                }
+
+            }
+        }
 
 
         $valor = floatval($request->valor);

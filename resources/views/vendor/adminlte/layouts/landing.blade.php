@@ -15,39 +15,15 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
-        .mySlides {
-            display:none;
-        }
-        .myDiv{
-            position:fixed;
+        img {
             width: 100%;
-            height: 40%;
-            bottom: 500px;
-        }
-        div img {
-            display: block;
-            width: 100%;
-            height:900px;
+            height: auto;
         }
     </style>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            var slideIndex = 0;
-            carousel();
-            function carousel() {
-                var i;
-                var x = document.getElementsByClassName("mySlides");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                slideIndex++;
-                if (slideIndex > x.length) {slideIndex = 1}
-                x[slideIndex-1].style.display = "block";
-                setTimeout(carousel, 2000); // Change image every 2 seconds
-            }
-        });
-    </script>
+
+
 </head>
 
 <body data-spy="scroll" data-target="#navigation" data-offset="50">
@@ -57,7 +33,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <div id="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><b>KD O Produto</b></a>
+                <a class="navbar-brand" href="{{ route('auth.login') }}"><b>KD O Produto</b></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -75,10 +51,11 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
     {{--<h2 class="w3-center">AskLunch</h2>--}}
 
-    <div class="myDiv">
-        <img class="mySlides" src="{{URL::asset('/imagens/principal.png')}}">
 
-    </div>
+        <img style="width: 100%" src="{{URL::asset('/imagens/01.jpg')}}">
+        <img src="{{URL::asset('/imagens/02.jpg')}}">
+
+
 
 
 
@@ -89,22 +66,10 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         <div id="c">
             <div class="container">
                 <p>
-                    <strong>KD O Produto <br> Copyright &copy; <?php echo date('Y')?> </strong>
+                    <strong>KD O Produto Copyright &copy; <?php echo date('Y')?> </strong>
                 </p>
             </div>
         </div>
     </footer>
 
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-{{--<script src="{{ url (mix('/js/app-landing.js')) }}"></script>--}}
-{{--<script>--}}
-{{--$('.carousel').carousel({--}}
-{{--interval: 3500--}}
-{{--})--}}
-{{--</script>--}}
-{{--</body>--}}
-{{--</html>--}}
